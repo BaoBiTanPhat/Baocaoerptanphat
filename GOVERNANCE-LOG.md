@@ -2,6 +2,18 @@
 
 > Lịch sử thay đổi governance rules, skills, architecture decisions, và system audit.
 >
+> 📍 **CON TRỎ HIỆN HÀNH — cập nhật 06/09/2026.** Nhật ký bên dưới dừng ở mốc **25/08/2026**; các đợt sau **không** được chép lại vào đây (tránh phình). Tra theo con trỏ:
+>
+> | Mốc | Nội dung | Đọc ở |
+> |---|---|---|
+> | 03/09/2026 | Khép kỹ thuật M0 · mở M1 · phát hành `V1.00.368` · bốn tiêu chuẩn giao diện mới | `BAO-CAO-WP-SEP03-KHEP-M0-MO-M1-20260903.md` · `BAO-CAO-UI-KHACH-HANG-NAM-SUA-20260903.md` |
+> | 04/09/2026 | Đầu bảng ghim-nhưng-trong-suốt → một cách dựng duy nhất toàn hệ · phát hành `V1.00.369` | `BAO-CAO-CHUAN-HOA-DAU-BANG-TOAN-HE-20260904.md` |
+> | 05/09/2026 | Chốt luật nơi lưu bí mật (bản luật `3.0`) + audit tài liệu chuẩn giao diện | `BAO-CAO-CHOT-LUAT-BI-MAT-VA-AUDIT-SSOT-20260905.md` |
+> | 06/09/2026 | Tự soát đối kháng — khép các chỗ bản vá trước bỏ sót (bản luật `3.1`) · thi hành tiêu chuẩn trên mã | `BAO-CAO-TU-SOAT-VA-THI-HANH-TIEU-CHUAN-20260906.md` |
+> | 06/09/2026 | Kiểm hội tụ ba nơi + dọn tài liệu lỗi thời + đo nghiệm thu M1 | `BAO-CAO-HOI-TU-VA-NGHIEM-THU-M1-20260906.md` |
+>
+> **Số bản luật hiện hành: `3.1`** (nhật ký dưới đây mới ghi tới `2.8`).
+>
 > **Cập nhật:** 25/08/2026 — **NÂNG LUẬT `2.7 → 2.8`**: thêm luật **bàn giao quyết định về Notion** — sổ yêu cầu chủ dự án là **kênh vận chuyển**, **mỗi chỉ thị một mục**, trường trạng thái đồng bộ nay **có bảng giá trị**, và **bắt buộc có gói bàn giao**. Kèm **ghi bù 3 chỉ thị bị bỏ sót**. *(Cùng ngày, trước đó: Pha C3.1.)*
 >
 > **Trước đó:** 25/08/2026 — **PHA C3.1**: ghi sổ **chín quyết định nền** của chủ dự án (Notion là sổ gốc · chính sách **MariaDB 10.11 LTS** cả hai môi trường · **101 bảng** · định nghĩa *"đang chạy thật"*) · **đo read-only** · sửa các kết luận **vượt quá bằng chứng** · đóng gói bàn giao Notion. **Runtime CSDL/phiên bản: chưa đo được — còn mở.** (Trước đó: Pha C3, Pha C2, Pha C.)

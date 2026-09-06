@@ -1,8 +1,15 @@
 # 🚀 Kế Hoạch Go-Live — Phân Quyền NV Kinh Doanh & Thiết Kế
 
+> 🗄️ **HISTORICAL BASELINE — gắn nhãn 06/09/2026.**
+> Đây là **mốc nền lịch sử ngày 14/06/2026**, **KHÔNG** phải kế hoạch đang chạy. Nhiều khoảng trống nêu trong tài liệu này **đã được báo cáo đóng** ở các đợt sau (M0 khép kỹ thuật · M1 mở — báo cáo 03/09/2026).
+> **KHÔNG chạy lại toàn bộ các giai đoạn của bản này**, và **KHÔNG** lập kế hoạch cạnh tranh dựa trên nó. Trạng thái module hiện hành: xem [`README.md`](README.md); diễn biến mới nhất: các báo cáo `…-20260903` → `…-20260906`.
+>
+> ✅ **PHẦN CÒN NGUYÊN GIÁ TRỊ — DÙNG LẠI, KHÔNG VIẾT LẠI:** bảng nghiệm thu **T1–T9** (ma trận quyền **Quản trị / Kinh doanh / Thiết kế**) và các câu hỏi nghiệp vụ. Đây chính là bộ tiêu chí dùng cho **nghiệm thu M1** hiện nay.
+> ⛔ Dòng *"Trạng thái: Chờ Owner xác nhận"* ngay dưới là **trạng thái của bản 14/06**, đã hết hiệu lực — giữ nguyên văn để truy vết, **không đọc thành việc đang chờ Owner**.
+>
 > **Plan ID:** PLAN-20260614-GOLIVESTAGE1
 > **Ngày lập:** 14/06/2026
-> **Trạng thái:** Chờ Owner xác nhận
+> **Trạng thái (nguyên văn bản 14/06 — ĐÃ HẾT HIỆU LỰC):** Chờ Owner xác nhận
 
 ---
 

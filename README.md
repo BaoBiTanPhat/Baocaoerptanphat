@@ -12,23 +12,23 @@
 |-----------|----------|
 | **Tên dự án** | ERP Tân Phát (Tân Phát Packaging) |
 | **Sơ đồ số phiên bản** | `V{aa}.{bb}.{xxx}` (Owner chốt 11/08/2026) — ví dụ `V1.00.337`; mỗi đợt phát hành `xxx +1`, `xxx→999` thì `bb +1`, `bb→99` thì `aa +1`. Thay sơ đồ cũ `V0.XXX`. |
-| **Phiên bản mã nguồn** | `V1.00.355` ✅ (đã phát hành 23/08/2026) |
-| **Phiên bản đã phát hành lên vận hành** | `V1.00.355` — **có hồ sơ triển khai** ngày 23/08/2026 · commit `<mã-nguồn-riêng>` · nhánh `main` — tách Biểu Mẫu khỏi nhóm Hệ Thống. Chi tiết: [PHAT-HANH-V1.00.355-TACH-BIEU-MAU-KHOI-HE-THONG-20260823.md](PHAT-HANH-V1.00.355-TACH-BIEU-MAU-KHOI-HE-THONG-20260823.md).<br>⏳ **Chưa đo lại số đang chạy trong lượt rà soát 25/08** — lượt này không được cấp kênh đọc trên máy vận hành. Theo quy ước của dự án, *"đang chạy thật"* chỉ được ghi khi **chính lượt đó đã đo trực tiếp**; ở đây mới có **hồ sơ triển khai**, chưa có phép đo.<br>*(Trước đó — giữ làm lịch sử: V1.00.344 triển khai 17/08/2026, Trang Giao Hàng sửa 4 điểm giao diện, có sao lưu CSDL trước, KHÔNG đổi cấu trúc dữ liệu, 99 bảng khớp, đăng nhập 200; V1.00.338–343 cùng ngày.)* |
-| **Mốc phiên bản hiện tại** | V1.00.355 (mã nguồn = máy vận hành, cùng một số) |
+| **Phiên bản mã nguồn** | `V1.00.369` (đo 06/09/2026 tại `src/lib/version.ts`) |
+| **Phiên bản đã phát hành lên vận hành** | `V1.00.369` — **có hồ sơ triển khai** (`DEPLOYED_SHA.txt` trên máy vận hành) ghi ngày **04/09/2026**, nhánh `main`. Đo lại 06/09/2026: dịch vụ sống, **7/7 tuyến trọng yếu trả 200**. *(Mốc cũ của dòng này: V1.00.355 ngày 23/08/2026.)* |
+| **Mốc phiên bản hiện tại** | `V1.00.369` ở **cả hai nơi** — ⚠️ **nhưng CÙNG SỐ ≠ CÙNG MÃ NGUỒN**: kho riêng đã đi thêm **9 lượt commit** sau đợt phát hành 04/09 mà **chưa tăng số phiên bản**, nên máy vận hành đang chạy một bản mã **cũ hơn** kho. Chi tiết ở `BAO-CAO-HOI-TU-VA-NGHIEM-THU-M1-20260906.md`. |
 | **Ngày bắt đầu** | 18/01/2026 |
 | **Phát hành lên vận hành thật** | 23/08/2026 — **V1.00.355** (tách Biểu Mẫu) · V1.00.353 + V1.00.354 · 22/08 — V1.00.351 + V1.00.352 · 17/08 — V1.00.338–344 · 11/08 — V1.00.337 |
-| **Cập nhật báo cáo này** | 24/08/2026 |
+| **Cập nhật báo cáo này** | **06/09/2026** *(bản 24/08 đã lỗi thời 13 ngày — xem mục Lịch sử cập nhật)* |
 | **Nguồn trạng thái (chuẩn)** | registry trong repo private (`.governance/registry/`) — bảng công khai này đồng bộ theo đó |
 | **Tech Stack** | Next.js 16.1.6 · React 19.2.4 · Tailwind 4.2.1 · TypeScript 5.9.3 · MariaDB 10.11 (**cả máy vận hành lẫn máy phát triển**, đồng bộ từ 09/08/2026) |
 | **Architecture** | Server Actions + Server Components + SSE |
 | **UI Framework** | Metronic (Demo 1 backbone) |
 | **Tổng modules** | 11 modules (M0–M9, MC, MF) |
-| **Tổng bảng DB** | **101 bảng** (đo trên máy vận hành 23/08/2026, đợt V1.00.355)<br>*Mốc trước: 99 bảng (23/07 và 22/08). Chênh lệch **không phải** đếm sai — giữa 22/08 và 23/08 có thêm **2 bảng** (`ncc_dia_chi`, `ncc_lien_he`), cả hai là **bảng thật** chứ không phải khung nhìn. 99 + 2 = 101.*<br>⚠️ *Các nguồn hiện có đều dùng chung một chữ "bảng", chưa nguồn nào tách **bảng** với **khung nhìn**; con số 101 là **tổng đối tượng** theo cách hồ sơ phát hành đếm.* |
-| **Trạng thái** | Máy vận hành đang chạy **V1.00.355** (23/08/2026 — xem dòng *Phiên bản đang chạy thật*).<br>🕰️ *Mốc lịch sử: **V1.00.337 go-live 11/08/2026** — lần đầu mã nguồn, GitHub và máy vận hành cùng một số. Giữ lại làm mốc, **không phải** phiên bản hiện hành.*<br>Các đợt tài liệu/quản trị **không** đổi số phiên bản. |
+| **Tổng bảng DB** | **101 bảng** — đo lại **06/09/2026**: máy vận hành **101** ≡ máy phát triển **101** (khớp). *(Mốc trước: 99 bảng ngày 23/07 và 22/08.)* |
+| **Trạng thái** | Máy vận hành đang chạy **V1.00.369** (phát hành 04/09/2026, đo lại 06/09/2026 — 7/7 tuyến trả 200).<br>⚠️ **Chưa hội tụ hoàn toàn:** kho riêng có **10 tệp giao diện + 3 kịch bản triển khai** chưa lên máy vận hành (không có thay đổi lược đồ/di trú). Không tự phát hành — chờ Owner duyệt gói phát hành bổ sung.<br>🕰️ *Mốc lịch sử: V1.00.337 go-live · V1.00.355 (23/08).* |
 
 ---
 
-## 📋 Trạng Thái Modules (cập nhật 16/08/2026)
+## 📋 Trạng Thái Modules (cập nhật 16/08/2026 — ⚠️ chưa soát lại; trạng thái M0/M1 mới nhất xem báo cáo 03/09 và 06/09)
 
 | Module | Tên | Status | Mô tả chức năng | Sub-routes |
 |--------|-----|--------|------------------|------------|
