@@ -1,0 +1,195 @@
+{
+  "report": "ERP_SKILL_ROUTING_HARDENING_CLOSEOUT_PUBLIC",
+  "schema_version": "closeout-008/1.0",
+  "work_package": "ERP-SKILL-ROUTING-HARDENING-CLOSEOUT-008",
+  "as_of": "2026-09-07",
+  "status": "PARTIAL",
+  "status_ly_do": "Toàn bộ hạng mục P0 trong phạm vi thi hành được đã ĐẠT và có kiểm ngược chứng minh. PARTIAL vì hai điều KHÔNG thể đóng trong gói này: (a) canary Cursor native BLOCKED_NOT_EXECUTED — phiên là Claude Code chạy trong vỏ Cursor, không phải Cursor native; (b) sáu quyết định Chủ dự án còn phần mở, xem OWNER_DECISION_MATRIX.json.",
+  "bon_truc": {
+    "ROUTER_ADVISORY_DETECT": "ACTIVE",
+    "CLIENT_NATIVE_DISCOVERY": {
+      "CLAUDE_CODE": "PROVEN_FALSE",
+      "CURSOR_NATIVE": "NOT_CHECKED"
+    },
+    "AUTO_LOAD": "OFF_BY_DESIGN",
+    "AUTO_EXECUTE": "OFF_BY_DESIGN"
+  },
+  "so_do_128_ky_nang": {
+    "tong": 128,
+    "rui_ro_hieu_luc": {
+      "R0_READ_ONLY": 6,
+      "R2_DATA_OR_AUTH": 15,
+      "R1_CODE": 96,
+      "R3_RELEASE": 11
+    },
+    "rui_ro_may_suy_don_thuan": {
+      "R0_READ_ONLY": 101,
+      "R2_DATA_OR_AUTH": 9,
+      "R3_RELEASE": 8,
+      "R1_CODE": 10
+    },
+    "so_bi_ban_ra_nang_rui_ro": 109,
+    "provenance": {
+      "ERP_OWNER_BUILT": 118,
+      "VENDOR_QUARANTINED": 10
+    },
+    "negative_trigger_da_khai": 35,
+    "negative_trigger_chua_khai": 93,
+    "khong_git_theo_doi": 10
+  },
+  "ra_ngu_nghia": {
+    "tong": 128,
+    "theo_trang_thai": {
+      "MISSING": 39,
+      "VALID_SEMANTIC": 78,
+      "INVALID_FALSE_POSITIVE": 8,
+      "NEEDS_OWNER_INPUT": 3
+    },
+    "so_da_tham_dinh_doi_khang": 123,
+    "so_phan_bien_lat_ngu_nghia": 63,
+    "so_phan_bien_lat_rui_ro": 6,
+    "so_than_co_dieu_kien_that": 96,
+    "mutation_da_cap_phep": 0
+  },
+  "cong_kiem": {
+    "lenh": "npm run test:skill-router",
+    "so_dieu_kien": 95,
+    "ket_qua": "95 ĐẠT / 0 HỎNG",
+    "kiem_nguoc": "20 lần phá có chủ đích · 20/20 làm cổng đỏ đúng cơ chế · mã băm xác nhận từng lần · khôi phục khớp nguyên trạng",
+    "da_noi_vao": "test:gov-gates"
+  },
+  "nang_cap_ky_nang": {
+    "nguyen_tac": "update-in-place, bảo toàn nội dung cũ, mỗi mục có ghi chú hoàn tác",
+    "da_sua": [
+      {
+        "slug": "deploy-local-github-vps",
+        "su_kien": "EV-007-08",
+        "muc_them": "5b — kiểm tuyến phải đổi mã thoát, có thời hạn, ba hạng tuyến, bảng cho phép"
+      },
+      {
+        "slug": "erp-change-control",
+        "su_kien": "EV-007-08",
+        "muc_them": "10 — bước xác nhận phải đổi mã thoát"
+      },
+      {
+        "slug": "audit-ui",
+        "su_kien": "EV-007-09",
+        "muc_them": "kiểm VẮNG MẶT phải có đối chứng dương; cấm grep một dòng trên JSX đa dòng"
+      },
+      {
+        "slug": "data-access-layer",
+        "su_kien": "EV-007-10",
+        "muc_them": "Nguyên tắc 4 — cổng kiểm và đường ghi dùng cùng một phép thử"
+      },
+      {
+        "slug": "contract-preservation-check",
+        "su_kien": "EV-007-10",
+        "muc_them": "hợp đồng phải kiểm và ghi bằng cùng một phép thử"
+      }
+    ],
+    "khong_sua": [
+      {
+        "ten": "quality-gate-contract",
+        "ly_do": "KHÔNG phải kỹ năng dự án — là cổng kiểm scripts/tests/quality-gate-contract.test.mjs, đã nằm trong test:gov-gates. Không tự tạo kỹ năng cho nó.",
+        "phan_loai": "PROJECT_GATE, không phải PROJECT_SKILL"
+      }
+    ]
+  },
+  "loi_tu_phat_hien_trong_goi_nay": [
+    {
+      "ma": "L1",
+      "mo_ta": "Bộ khớp điều kiện KHÔNG-CHỌN bị ĐẢO CỰC: điều kiện 'việc KHÔNG đụng giao diện' chứa chính chữ 'giao diện' nên việc giao diện lại khớp điều kiện loại-bỏ.",
+      "da_sua": true,
+      "phep_thu": "E21"
+    },
+    {
+      "ma": "L2",
+      "mo_ta": "Bộ khớp bắt vào TỪ VỰNG CHUNG của chính kỹ năng ('chọn giá trị') nên kỹ năng chọn-nhiều bị loại bởi điều kiện chọn-một.",
+      "da_sua": true,
+      "phep_thu": "E2b/E2c"
+    },
+    {
+      "ma": "L3",
+      "mo_ta": "Bộ lọc phủ định CHẶN QUÁ TAY: chữ CẤM ở mệnh đề trước nuốt luôn lệnh thật ở mệnh đề 'thay vào đó'.",
+      "da_sua": true,
+      "phep_thu": "E13"
+    },
+    {
+      "ma": "L4",
+      "mo_ta": "Ba phép thử RỖNG NGHĨA hoặc bị luật khác quyết định — kiểm ngược phát hiện.",
+      "da_sua": true,
+      "phep_thu": "E2b · E7b/E7c · E15c/E15e"
+    },
+    {
+      "ma": "L5",
+      "mo_ta": "Suy đoán rủi ro bằng mẫu dò ĐÁNH GIÁ THẤP một cách hệ thống: lệch 109/128, trong đó 97 ca bản rà xếp CAO HƠN.",
+      "da_sua": true,
+      "phep_thu": "E23b/E23c"
+    }
+  ],
+  "gioi_han": [
+    "Điểm khớp việc↔kỹ năng là phép đo THÔ theo từ khoá, không phải hiểu ngữ nghĩa. Cầu từ vựng do người dựng, còn thiếu.",
+    "Rủi ro vẫn là SUY ĐOÁN — mạnh nhất là bản rà đọc thân có phản biện, nhưng vẫn do máy đọc, chưa có người soát từng dòng.",
+    "Cursor native CHƯA ĐO. Cấm suy từ công cụ khác.",
+    "Kỹ năng dựng sẵn của công cụ và kỹ năng trình kết nối ngoài vẫn NGOÀI vòng cổng quản trị của dự án."
+  ],
+  "artifact_manifest": [
+    {
+      "ten": "SKILL_INVENTORY_CURRENT.json",
+      "co_checksum": true
+    },
+    {
+      "ten": "SKILL_SOURCE_HASH_LEDGER.json",
+      "co_checksum": true
+    },
+    {
+      "ten": "SKILL_EVIDENCE_EVENTS.json",
+      "co_checksum": true
+    },
+    {
+      "ten": "CLIENT_CAPABILITY_INVENTORY_CURRENT.json",
+      "co_checksum": true
+    },
+    {
+      "ten": "CROSS_SYSTEM_SKILL_MAP.json",
+      "co_checksum": true
+    },
+    {
+      "ten": "NEGATIVE_TRIGGER_SEMANTIC_AUDIT.json",
+      "co_checksum": true
+    },
+    {
+      "ten": "OWNER_DECISION_MATRIX.json",
+      "co_checksum": true
+    },
+    {
+      "ten": "skill-routing-overrides.yml",
+      "co_checksum": true
+    },
+    {
+      "ten": "skills.yml",
+      "co_checksum": true
+    },
+    {
+      "ten": "skill-routing-contract.md",
+      "co_checksum": true
+    },
+    {
+      "ten": "skill-receipt-examples.md",
+      "co_checksum": true
+    },
+    {
+      "ten": "cursor-native-canary.md",
+      "co_checksum": true
+    },
+    {
+      "ten": "skill-router.mjs",
+      "co_checksum": true
+    },
+    {
+      "ten": "skill-router.test.mjs",
+      "co_checksum": true
+    }
+  ],
+  "ghi_chu_loc": "Ban CONG KHAI: da bo ma bam tung tep nguon va duong dan noi bo theo quy tac an toan bao cao. Ban day du giu trong kho rieng."
+}
