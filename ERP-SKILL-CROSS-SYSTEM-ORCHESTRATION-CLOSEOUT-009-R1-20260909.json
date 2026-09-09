@@ -1,0 +1,183 @@
+{
+  "bao_cao": "ERP_SKILL_CROSS_SYSTEM_ORCHESTRATION_CLOSEOUT_R1",
+  "lược_đồ": "bao-cao-cong-khai/1.0",
+  "goi_viec": "ERP-SKILL-CROSS-SYSTEM-ORCHESTRATION-CLOSEOUT-009-R1",
+  "thay_the_goi": "ERP-SKILL-CROSS-SYSTEM-ORCHESTRATION-CLOSEOUT-009",
+  "ngay": "2026-09-09",
+  "trang_thai": "PARTIAL",
+  "trang_thai_ly_do": "Toàn bộ hạng mục kỹ thuật trong phạm vi cấp quyền đã hoàn tất và có kiểm ngược chứng minh. PARTIAL vì hai điều KHÔNG thể đóng trong gói này: (a) ba canary Cursor Native đều BLOCKED_NOT_EXECUTED — phiên là Claude Code chạy trong vỏ Cursor; (b) các quyết định của Chủ dự án còn mở, xem OWNER_DECISION_MATRIX.json. ⚠️ PARTIAL ở đây nói về PHẠM VI còn mở, KHÔNG phải về sáu hạng mục sửa lỗi P0/P1 — sáu hạng mục đó xem trường `p0_p1` bên dưới, từng mục có phép thử và có lần phá chứng minh.",
+  "ghi_chu_an_toan_cong_khai": "Bản công khai này CỐ Ý không chứa mã băm, mã commit, đường dẫn máy vận hành, khoá, thông tin định danh cá nhân, số liệu kinh doanh hay số tiền. Hồ sơ đầy đủ kèm mã băm nằm trong kho mã nội bộ.",
+  "nguyen_tac_thay_the": "Bản 009 KHÔNG bị xoá, KHÔNG bị viết lại. Nó là bằng chứng lịch sử, còn nguyên trong lịch sử kho mã. R1 chỉ ĐÍNH CHÍNH những chỗ đo lại thấy sai, giữ NGUYÊN VĂN câu cũ.",
+  "bon_khiem_khuyet_cua_ban_009": [
+    {
+      "ma": "E1",
+      "muc": "Loại cứng hỏng-thì-MỞ",
+      "ban_cu": "`owner_decision_ref` chỉ cần là chuỗi KHÔNG RỖNG là đủ để HARD_REJECT.",
+      "do_duoc": "Truyền chuỗi 'BAT KY CHUOI NAO' → HARD_REJECT. Bất kỳ ai gõ bất kỳ chữ gì cũng tạo được một quyết định giả của Chủ dự án.",
+      "muc_do": "NGHIÊM TRỌNG — ngược nguyên tắc hỏng-thì-KHOÁ của dự án",
+      "ban_R1": "Mười hai cửa, mỗi cửa hỏng-thì-KHOÁ; căn cứ phải PHÂN GIẢI tới sổ máy đọc được .governance/registry/owner-decisions.json.",
+      "lan_pha_chung_minh": "R02 → R15 — mười bốn lần phá, mỗi lần gỡ đúng một cửa, cổng đều ĐỎ"
+    },
+    {
+      "ma": "E2",
+      "muc": "Cảnh báo và quan sát chưa hề được phát ra",
+      "ban_cu": "Có 25 ứng viên khớp điều kiện mà phiếu xuất ra 0 cảnh báo, 0 quan sát.",
+      "do_duoc": "Mảng `negative_trigger_warnings` và `negative_trigger_observations` luôn rỗng.",
+      "muc_do": "NGHIÊM TRỌNG — công bố 'chỉ cảnh báo' trong khi không có cảnh báo nào tồn tại",
+      "ban_R1": "Thực sự đẩy cảnh báo có cấu trúc (8 trường, action=KEEP_WITH_WARNING) và quan sát (action=KEEP_AND_OBSERVE) vào phiếu.",
+      "lan_pha_chung_minh": "R16 · R17 · R18"
+    },
+    {
+      "ma": "E3",
+      "muc": "Gộp tín hiệu DỰ ÁN với trạng thái CÔNG CỤ",
+      "ban_cu": "Xếp bốn mục ngang hàng và dùng chung một nhãn AUTO_LOAD.",
+      "do_duoc": "'Bộ định tuyến không tự nạp' (bất biến theo thiết kế) và 'công cụ không nạp' (phải đo mới biết) bị viết chung một nhãn.",
+      "muc_do": "ĐÁNG KỂ — sinh ra kết luận chưa từng được đo",
+      "ban_R1": "Mô hình 1 + 4 kèm bất biến ROUTER_CONTENT_LOAD = OFF_BY_DESIGN, tách khỏi CLIENT_CONTENT_LOAD = NOT_CHECKED.",
+      "lan_pha_chung_minh": "R20 · R21 · P24"
+    },
+    {
+      "ma": "E4",
+      "muc": "Hai con số chọi nhau trong cùng một tệp",
+      "ban_cu": "Ghi chú viết cứng 'Bảy chuỗi sai-dương còn lại' trong khi trường tự tính ngay bên cạnh ra 6.",
+      "do_duoc": "Đo lại theo sổ hiệu lực: 8 tổng − 2 đã gỡ = 6 còn lại.",
+      "muc_do": "NHỎ nhưng làm mất tin cậy số liệu",
+      "ban_R1": "Cả hai chỗ lấy từ MỘT phép đo; nhãn cũ giữ nguyên văn trong khối đính chính.",
+      "lan_pha_chung_minh": "(kiểm bằng chính cổng — nhãn lệch số đo ⇒ G10b đỏ)"
+    }
+  ],
+  "sau_hang_muc": [
+    {
+      "ma": "P0-A",
+      "ten": "Sửa phân loại định danh/nguồn gốc XUYÊN SUỐT",
+      "da_lam": "Bốn bậc ưu tiên, trên thắng dưới: khai tường minh → quyền sở hữu theo sổ → nhãn nhà cung cấp CHUNG → tiền tố tên tệp (phương án CHÓT). Metadata được truyền đủ từ sổ đăng ký qua ĐƯỜNG SẢN XUẤT dinhTuyen() vào cả dinhDanhDayDu() lẫn heCuaKyNang()."
+    },
+    {
+      "ma": "P0-B",
+      "ten": "Loại cứng của Chủ dự án phải HỎNG-THÌ-KHOÁ",
+      "da_lam": "Bỏ mặc định `owner_decision_ref ? OWNER_APPROVED : AI_REVIEWED`; bỏ `scope_khop: true` cố định; dựng bộ so khớp thật cho ba phạm vi; thêm sổ quyết định máy đọc được; thêm cờ CLI `--as-of YYYY-MM-DD` để tiêm ngày bằng chứng, ngày không hợp lệ thì thoát mã 2."
+    },
+    {
+      "ma": "P0-C",
+      "ten": "Cảnh báo và quan sát phải CÓ THẬT",
+      "da_lam": "Đẩy cảnh báo có cấu trúc đủ 8 trường (identity · policy_state · matched_trigger · policy_source · reason · scope_result · freshness · action=KEEP_WITH_WARNING) và quan sát (action=KEEP_AND_OBSERVE) vào phiếu. Chỉ HARD_REJECT mới loại ứng viên."
+    },
+    {
+      "ma": "P1-A",
+      "ten": "Chuẩn hoá mô hình bằng chứng 1 + 4",
+      "da_lam": "MỘT tín hiệu cấp dự án ROUTER_ADVISORY_DETECT + BỐN trạng thái công cụ (CLIENT_NATIVE_DISCOVERY · CLIENT_CONTENT_LOAD · CLIENT_WORKFLOW_APPLICATION · EXECUTION_AUTHORITY) + bất biến ROUTER_CONTENT_LOAD = OFF_BY_DESIGN. Đồng bộ cùng một giá trị ở sổ năng lực · hợp đồng · bộ kiểm · ví dụ phiếu · đề xuất Notion · báo cáo công khai."
+    },
+    {
+      "ma": "P1-B",
+      "ten": "Sửa lược đồ phiếu, ghi chú và tiêu đề tệp",
+      "da_lam": "ĐO lược đồ thật trên phiếu do production sinh ra. Nguồn đã ĐỔI so với gói 009 nên KHÔNG chép con số cũ: nay là 35 tổng = 29 bắt buộc + 6 bổ trợ. Câu '26 ⊆ 30' đã gỡ khỏi hợp đồng (nguyên văn giữ trong khối đính chính). Tiêu đề cả hai tệp mã nay ghi 009-R1 và đánh dấu gói 007 là HISTORICAL_ORIGIN."
+    },
+    {
+      "ma": "P1-C",
+      "ten": "Sinh lại toàn bộ hiện vật hiện hành",
+      "da_lam": "Sinh lại từ nguồn cuối, không sửa tay để ép khớp. Mọi hiện vật mang work_package = ERP-SKILL-CROSS-SYSTEM-ORCHESTRATION-CLOSEOUT-009-R1. Băm SHA-256 tính TRỰC TIẾP từ từng SKILL.md hiện tại, đã bao gồm nội dung sau hai ghi chú hoàn tác của gói 009. Cổng tính lại và so TỪNG băm, không chỉ đếm 128."
+    }
+  ],
+  "mo_hinh_bang_chung": {
+    "ten": "1 + 4",
+    "tin_hieu_cap_du_an": "bộ định tuyến có đề xuất được không — script của DỰ ÁN, không phải năng lực công cụ",
+    "bon_trang_thai_cua_cong_cu": [
+      "công cụ có TỰ THẤY kỹ năng không",
+      "công cụ có TỰ NẠP nội dung không — cấm suy từ trục trên",
+      "công cụ có TỰ LÀM THEO quy trình không",
+      "công cụ có QUYỀN TỰ THI HÀNH không"
+    ],
+    "bat_bien_bo_dinh_tuyen": "⛔ Đây là BẤT BIẾN của bộ định tuyến, KHÔNG phải phép đo về công cụ. CẤM viết lại thành CLIENT_CONTENT_LOAD=OFF. Trạng thái nạp của công cụ chỉ được kết luận bằng phép đo trên chính công cụ đó.",
+    "theo_tung_cong_cu": [
+      {
+        "client": "CLAUDE_CODE",
+        "version": "2.1.263",
+        "epoch": "2026-09-09",
+        "is_historical": false,
+        "ROUTER_ADVISORY_DETECT": "PROVEN_TRUE",
+        "CLIENT_NATIVE_DISCOVERY": "PROVEN_FALSE",
+        "CLIENT_CONTENT_LOAD": "NOT_CHECKED",
+        "CLIENT_WORKFLOW_APPLICATION": "NOT_CHECKED",
+        "EXECUTION_AUTHORITY": "OFF_BY_DESIGN",
+        "built_in_count": 17
+      },
+      {
+        "client": "CLAUDE_CODE",
+        "version": "2.1.261",
+        "epoch": "2026-09-07",
+        "is_historical": true,
+        "ROUTER_ADVISORY_DETECT": "PROVEN_TRUE",
+        "CLIENT_NATIVE_DISCOVERY": "PROVEN_FALSE",
+        "CLIENT_CONTENT_LOAD": "NOT_CHECKED",
+        "CLIENT_WORKFLOW_APPLICATION": "NOT_CHECKED",
+        "EXECUTION_AUTHORITY": "OFF_BY_DESIGN",
+        "built_in_count": null
+      },
+      {
+        "client": "CURSOR_NATIVE",
+        "version": "3.19.13",
+        "epoch": null,
+        "is_historical": false,
+        "ROUTER_ADVISORY_DETECT": "PROVEN_TRUE",
+        "CLIENT_NATIVE_DISCOVERY": "BLOCKED_NOT_EXECUTED",
+        "CLIENT_CONTENT_LOAD": "BLOCKED_NOT_EXECUTED",
+        "CLIENT_WORKFLOW_APPLICATION": "BLOCKED_NOT_EXECUTED",
+        "EXECUTION_AUTHORITY": "OFF_BY_DESIGN",
+        "built_in_count": null
+      }
+    ]
+  },
+  "loai_cung_hong_thi_khoa": {
+    "so_cua": 12,
+    "nguyen_tac": "Thiếu, sai, hoặc không tính được BẤT KỲ cửa nào ⇒ giữ ứng viên, hạ xuống chỉ cảnh báo hoặc chỉ quan sát. TUYỆT ĐỐI không loại cứng.",
+    "doi_chung_duong": "Đo qua ĐƯỜNG SẢN XUẤT: kỹ năng chọn-một bị loại cứng cho việc chọn-nhiều, đúng định danh, đúng điều kiện, còn hiệu lực, còn tươi 0/180 ngày, đúng cả ba phạm vi. Kỹ năng chọn-nhiều vẫn ở lại danh sách đề xuất.",
+    "so_ca_am_deu_khong_loai_cung": 16
+  },
+  "cong_kiem": {
+    "so_dieu_kien": 185,
+    "ket_qua": "185 ĐẠT / 0 HỎNG",
+    "bo_gop_ma_thoat": 0,
+    "tat_dinh": "sinh lại sổ đăng ký ba lần → cùng một mã băm"
+  },
+  "kiem_nguoc": {
+    "so_lan_pha": 48,
+    "dat": 48,
+    "lo_mu": 0,
+    "phuong_phap": "Mỗi cơ chế bị phá đúng MỘT chỗ. TRƯỚC khi kết luận phải xác nhận mã băm tệp ĐÃ ĐỔI — không xác nhận thì 'cổng vẫn xanh' là vô nghĩa. Khôi phục xong đối chiếu lại băm = nguyên trạng.",
+    "ba_lo_mu_vong_dau": "Vòng chạy đầu ra 45 ĐẠT · 3 LỖ MÙ. Cả ba lỗ nằm ở BỘ KIỂM, không nằm ở mã sản xuất: (1) hai dòng bảng chân trị dùng regex HOẶC nên khi gỡ cửa 'ngày hiện tại phải hợp lệ' thì null bị ép về 0, luồng rơi sang cửa TƯƠNG LAI và vẫn khớp vế thứ hai ⇒ cổng xanh dù cửa đã mất; (2) bảng chân trị thiếu hẳn ca last_reviewed_at ở tương lai (chỉ có ca decided_at); (3) gỡ cửa phân giải sổ làm cổng SẬP bằng ngoại lệ chưa bắt — đỏ thật nhưng không đỏ-có-tên, nay được phân loại riêng là ĐẠT*. Sau khi vá: 48/48, 0 lỗ mù."
+  },
+  "mac_dinh_an_toan_dong_lane": {
+    "che_do": "ADVISORY_MANUAL",
+    "muc_can_phan_xu": 3,
+    "sai_duong_con_lai": 6,
+    "dinh_chinh_so_sai_duong": {
+      "ban_009_ghi": "Bảy",
+      "do_lai": 6,
+      "delta": -1,
+      "cach_do": "Với mỗi hàng INVALID_FALSE_POSITIVE: chuỗi bị coi nhầm CÒN nằm trong negative_trigger hiệu lực của .governance/registry/skills.yml không (so sau chuẩn hoá nháy/khoảng trắng/hoa-thường)."
+    },
+    "thieu_dieu_kien": 39,
+    "nha_cung_cap_cach_ly": 10,
+    "dinh_danh_tro_ly_tai_lieu": 31,
+    "ky_nang_da_ra_giu_nguyen": 13
+  },
+  "khong_dong_toi": {
+    "product_source": "KHÔNG đụng",
+    "database_schema_migration": "KHÔNG đụng",
+    "vps_deploy_restart": "KHÔNG đụng",
+    "vendor_install_update": "KHÔNG — giữ NO_AUTO_INSTALL / NO_AUTO_UPDATE",
+    "notion_mutation": "KHÔNG — chỉ đọc, và chỉ tạo ĐỀ XUẤT",
+    "hook_setting_mcp": "KHÔNG bật gì",
+    "skill_xoa_gop_doi_ten": "KHÔNG — 128/128 định danh còn nguyên",
+    "version_bump": "KHÔNG"
+  },
+  "gioi_han": [
+    "Ba canary Cursor Native đều BLOCKED_NOT_EXECUTED — cần phiên Cursor thật.",
+    "Trục NẠP và ỨNG DỤNG chưa đo trên BẤT KỲ công cụ nào.",
+    "Điểm khớp việc↔kỹ năng vẫn là đo THÔ theo từ khoá, không phải hiểu ngữ nghĩa.",
+    "Rủi ro vẫn là SUY ĐOÁN — nguồn mạnh nhất là bản rà đọc thân có phản biện, chưa có người soát từng dòng.",
+    "Danh mục năng lực dựng sẵn chỉ đo được cho Claude Code 2.1.263; Cursor Native không inspect được."
+  ],
+  "ve_tinh_doc_lap_cua_bang_chung": "Mã băm trong hồ sơ nội bộ do CHÍNH phiên này tính. Chúng chứng minh TÍNH TOÀN VẸN (tệp không đổi giữa hai thời điểm), KHÔNG phải xác nhận độc lập của bên thứ ba.",
+  "buoc_ke_tiep": "TanPhatAI đối soát hồ sơ đã công bố với kho mã, rồi trình Chủ dự án xác nhận LẦN CUỐI. Chỉ SAU xác nhận đó mới cập nhật tài liệu trên nền tảng ghi chép."
+}
