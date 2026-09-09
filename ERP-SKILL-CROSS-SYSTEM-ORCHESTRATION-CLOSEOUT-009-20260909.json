@@ -1,0 +1,316 @@
+{
+  "report": "ERP_SKILL_CROSS_SYSTEM_ORCHESTRATION_CLOSEOUT_PUBLIC",
+  "schema_version": "closeout-009/1.0",
+  "work_package": "ERP-SKILL-CROSS-SYSTEM-ORCHESTRATION-CLOSEOUT-009",
+  "as_of": "2026-09-09",
+  "evidence_epoch": "2026-09-09",
+  "status": "PARTIAL",
+  "status_ly_do": "Toàn bộ hạng mục kỹ thuật trong phạm vi cấp quyền đã hoàn tất và có kiểm ngược chứng minh. PARTIAL vì hai điều KHÔNG thể đóng trong gói này: (a) ba canary Cursor Native đều BLOCKED_NOT_EXECUTED — phiên là Claude Code chạy trong vỏ Cursor; (b) các quyết định của Chủ dự án còn mở, xem OWNER_DECISION_MATRIX.json.",
+  "bon_truc_theo_cong_cu": [
+    {
+      "client": "CLAUDE_CODE",
+      "version": "2.1.263",
+      "epoch": "2026-09-09",
+      "is_historical": false,
+      "ROUTER_ADVISORY_DETECT": "PROVEN_TRUE",
+      "CLIENT_NATIVE_DISCOVERY": "PROVEN_FALSE",
+      "AUTO_LOAD": "NOT_CHECKED",
+      "WORKFLOW_APPLICATION": "NOT_CHECKED",
+      "AUTO_EXECUTE": "OFF_BY_DESIGN",
+      "built_in_count": 17
+    },
+    {
+      "client": "CLAUDE_CODE",
+      "version": "2.1.261",
+      "epoch": "2026-09-07",
+      "is_historical": true,
+      "ROUTER_ADVISORY_DETECT": "PROVEN_TRUE",
+      "CLIENT_NATIVE_DISCOVERY": "PROVEN_FALSE",
+      "AUTO_LOAD": "NOT_CHECKED",
+      "WORKFLOW_APPLICATION": "NOT_CHECKED",
+      "AUTO_EXECUTE": "OFF_BY_DESIGN",
+      "built_in_count": null
+    },
+    {
+      "client": "CURSOR_NATIVE",
+      "version": "3.19.13",
+      "epoch": null,
+      "is_historical": false,
+      "ROUTER_ADVISORY_DETECT": "PROVEN_TRUE",
+      "CLIENT_NATIVE_DISCOVERY": "BLOCKED_NOT_EXECUTED",
+      "AUTO_LOAD": "BLOCKED_NOT_EXECUTED",
+      "WORKFLOW_APPLICATION": "BLOCKED_NOT_EXECUTED",
+      "AUTO_EXECUTE": "OFF_BY_DESIGN",
+      "built_in_count": null
+    }
+  ],
+  "mat_phang_nang_luc": [
+    {
+      "plane_id": "ERP_OWNER_SKILLS",
+      "count": 118,
+      "count_definition": "số mục trong sổ đăng ký KHÔNG mang nhãn cách ly nhà cung cấp",
+      "authority_owner": "Chủ dự án ERP Tân Phát"
+    },
+    {
+      "plane_id": "VENDOR_SPECKIT_QUARANTINE",
+      "count": 10,
+      "count_definition": "số mục mang provenance=VENDOR_QUARANTINED trong sổ đăng ký",
+      "authority_owner": "nhà cung cấp bên ngoài — dự án KHÔNG sở hữu"
+    },
+    {
+      "plane_id": "VENDOR_MATT_REFERENCE",
+      "count": 37,
+      "count_definition": "số định danh đã lập catalog tại một commit đã ghim; KHÔNG phải số đã cài",
+      "authority_owner": "nhà cung cấp bên ngoài"
+    },
+    {
+      "plane_id": "TANPHATAI_NOTION_SKILLS",
+      "count": 32,
+      "count_definition": "27 chuyên biệt + 4 cơ bản + 1 trang kỹ năng cá nhân được bảo vệ",
+      "authority_owner": "Chủ dự án, ở lớp Notion — KHÔNG phải lớp Agent IDE"
+    },
+    {
+      "plane_id": "CLIENT_BUILT_INS",
+      "count": "theo từng công cụ",
+      "count_definition": "đếm THEO TỪNG công cụ + phiên bản + phiên; KHÔNG có con số chung",
+      "authority_owner": "nhà cung cấp công cụ — nằm NGOÀI vòng quản trị của dự án"
+    },
+    {
+      "plane_id": "CONNECTOR_CAPABILITIES",
+      "count": "theo từng công cụ",
+      "count_definition": "theo từng trình kết nối; KHÔNG phải kỹ năng, KHÔNG đếm chung với kỹ năng",
+      "authority_owner": "bên thứ ba + cấu hình tài khoản của Chủ dự án"
+    }
+  ],
+  "canh_bao_cong_don": "⛔ KHÔNG có con số 'tổng số kỹ năng của dự án'. Ai cộng bốn mặt phẳng lại rồi tuyên bố 'đã làm chủ toàn bộ' là đang gộp bốn thẩm quyền khác nhau thành một lời khẳng định sai.",
+  "doi_soat_ngu_nghia": {
+    "tong": 128,
+    "theo_trang_thai": {
+      "MISSING": 39,
+      "VALID_SEMANTIC": 78,
+      "INVALID_FALSE_POSITIVE": 8,
+      "NEEDS_OWNER_INPUT": 3
+    },
+    "mau_so": "128 kỹ năng trong bản rà; 123 đã qua tầng phản biện đối kháng",
+    "lat_phan_quyet": {
+      "ghi_chu": "Đối soát con số 'phản biện lật' của gói 008 — hai mẫu số KHÁC NHAU bị đặt cạnh nhau.",
+      "A_muc_lat_ngu_nghia": 63,
+      "B_muc_lat_rui_ro": 6,
+      "C_muc_lat_it_nhat_mot_truc": 68,
+      "D_tong_so_truc_bi_lat": 69,
+      "E_muc_lat_ca_hai_truc": 1,
+      "muc_lat_ca_hai": "database-ops",
+      "cong_thuc": "C = A + B − E → 68 = 63 + 6 − 1",
+      "mau_so_dung": "68/123 mục đã qua phản biện bị sửa ÍT NHẤT MỘT trục · tổng 69 TRỤC bị lật",
+      "cach_viet_sai_cua_goi_008": "'68 phán quyết (63 ngữ nghĩa + 6 rủi ro)' — trộn đếm MỤC với đếm TRỤC"
+    },
+    "sai_duong_da_xu_ly_trong_009": 1,
+    "sai_duong_con_lai": 6
+  },
+  "rui_ro_hieu_luc": {
+    "R0_READ_ONLY": 6,
+    "R2_DATA_OR_AUTH": 15,
+    "R1_CODE": 96,
+    "R3_RELEASE": 11
+  },
+  "rui_ro_may_suy_don_thuan": {
+    "R0_READ_ONLY": 101,
+    "R2_DATA_OR_AUTH": 9,
+    "R3_RELEASE": 8,
+    "R1_CODE": 10
+  },
+  "cong_kiem": {
+    "lenh": "npm run test:skill-router",
+    "so_dieu_kien": 136,
+    "ket_qua": "136 ĐẠT / 0 HỎNG",
+    "lenh_gop": "npm run test:gov-gates → mã thoát 0",
+    "orphan": {
+      "lenh": "npm run test:cong-mo-coi",
+      "tu_so": 124,
+      "mau_so": 124,
+      "dinh_nghia": "số lệnh test:* trong package.json CÓ ít nhất một bộ gộp gọi tới / tổng số lệnh test:*"
+    },
+    "tat_dinh": "sinh lại sổ đăng ký 3 lần → cùng một mã băm",
+    "kiem_nguoc": {
+      "so_lan_pha": 31,
+      "dat": 31,
+      "lo_mu": 0,
+      "phuong_phap": "mỗi lần phá đối chiếu mã băm TRƯỚC khi kết luận; khôi phục xong đối chiếu lại băm = nguyên trạng"
+    }
+  },
+  "sua_trong_goi_009": [
+    {
+      "ma": "S1",
+      "muc": "Phân loại định danh",
+      "noi_dung": "Metadata THẮNG tiền tố slug. speckit-erp-ssot-adapter về đúng hệ ERP_PROJECT.",
+      "phep_thu": "F1 · F1b · F1c · F1d"
+    },
+    {
+      "ma": "S2",
+      "muc": "Phân loại nhà cung cấp",
+      "noi_dung": "Nhãn CHUNG không còn tự thành Matt; vendor lạ ⇒ VENDOR_OTHER, mặc-định-từ-chối.",
+      "phep_thu": "F2 · F2b · F2c · F2d"
+    },
+    {
+      "ma": "S3",
+      "muc": "Vòng đời chính sách",
+      "noi_dung": "Bốn trạng thái; chỉ OWNER_APPROVED + căn cứ + tươi + đúng phạm vi mới loại cứng.",
+      "phep_thu": "F4 → F4j"
+    },
+    {
+      "ma": "S4",
+      "muc": "Tách bốn trục",
+      "noi_dung": "Trục NẠP không còn suy từ trục NHẬN DIỆN; hạ về NOT_CHECKED cho đúng bằng chứng.",
+      "phep_thu": "F5 → F5e · E17 · E17e"
+    },
+    {
+      "ma": "S5",
+      "muc": "Dọn dữ kiện gói 007",
+      "noi_dung": "Hợp đồng + 3 hiện vật về gói 009; sửa 5 con số lỗi thời.",
+      "phep_thu": "F6 → F6e · F7 · F7b"
+    },
+    {
+      "ma": "S6",
+      "muc": "Gỡ sai-dương",
+      "noi_dung": "So khớp SAU chuẩn hoá; data-access-layer đã sạch.",
+      "phep_thu": "F8 → F8d"
+    },
+    {
+      "ma": "S7",
+      "muc": "Bảo toàn kỹ năng",
+      "noi_dung": "Bù ghi chú hoàn tác cho 2 kỹ năng thiếu; nay 5/5 có.",
+      "phep_thu": "F9 · F10 · F10b"
+    }
+  ],
+  "loi_tu_phat_hien_trong_goi_009": [
+    {
+      "ma": "L1",
+      "mo_ta": "Tiền tố tên tệp thắng metadata — kỹ năng ERP bị xếp sang hệ nhà cung cấp.",
+      "da_sua": true
+    },
+    {
+      "ma": "L2",
+      "mo_ta": "Nhãn nhà cung cấp CHUNG bị quy về một nhà cung cấp cụ thể.",
+      "da_sua": true
+    },
+    {
+      "ma": "L3",
+      "mo_ta": "Kết quả máy rà được dùng để LOẠI CỨNG — máy không phải Chủ dự án.",
+      "da_sua": true
+    },
+    {
+      "ma": "L4",
+      "mo_ta": "Trục NẠP bị suy từ trục NHẬN DIỆN; chính phép thử F5c cũ cũng mã hoá lỗi này.",
+      "da_sua": true
+    },
+    {
+      "ma": "L5",
+      "mo_ta": "Sổ mục #250 khai '5/5 có ghi chú hoàn tác' — đo thật 3/5.",
+      "da_sua": true
+    },
+    {
+      "ma": "L6",
+      "mo_ta": "Báo cáo 008 trộn hai mẫu số: 68 đếm theo MỤC, 63+6 đếm theo TRỤC.",
+      "da_sua": true
+    },
+    {
+      "ma": "L7",
+      "mo_ta": "So chuỗi sai-dương qua ranh giới chuẩn hoá ⇒ chuỗi sai âm thầm ở lại.",
+      "da_sua": true
+    },
+    {
+      "ma": "L8",
+      "mo_ta": "Nhánh 'quyền sở hữu theo sổ' không gánh việc — kiểm ngược P21 phát hiện.",
+      "da_sua": true
+    }
+  ],
+  "bat_bien_pham_vi": {
+    "product_source": "KHÔNG đụng",
+    "database_schema_migration": "KHÔNG đụng",
+    "vps_deploy_restart": "KHÔNG đụng",
+    "vendor_install_update": "KHÔNG — giữ NO_AUTO_INSTALL / NO_AUTO_UPDATE",
+    "notion_mutation": "KHÔNG — chỉ đọc, và chỉ tạo ĐỀ XUẤT",
+    "hook_setting_mcp": "KHÔNG bật gì",
+    "skill_xoa_gop_doi_ten": "KHÔNG — 128/128 định danh còn nguyên",
+    "version_bump": "KHÔNG"
+  },
+  "gioi_han": [
+    "Ba canary Cursor Native đều BLOCKED_NOT_EXECUTED — cần phiên Cursor thật.",
+    "Trục NẠP và ỨNG DỤNG chưa đo trên BẤT KỲ công cụ nào.",
+    "Điểm khớp việc↔kỹ năng vẫn là đo THÔ theo từ khoá, không phải hiểu ngữ nghĩa.",
+    "Rủi ro vẫn là SUY ĐOÁN — nguồn mạnh nhất là bản rà đọc thân có phản biện, chưa có người soát từng dòng.",
+    "Danh mục năng lực dựng sẵn chỉ đo được cho Claude Code 2.1.263; Cursor Native không inspect được."
+  ],
+  "artifact_manifest": [
+    {
+      "ten": "SKILL_INVENTORY_CURRENT.json",
+      "co_checksum": true
+    },
+    {
+      "ten": "SKILL_SOURCE_HASH_LEDGER.json",
+      "co_checksum": true
+    },
+    {
+      "ten": "SKILL_EVIDENCE_EVENTS.json",
+      "co_checksum": true
+    },
+    {
+      "ten": "CLIENT_CAPABILITY_INVENTORY_CURRENT.json",
+      "co_checksum": true
+    },
+    {
+      "ten": "CROSS_SYSTEM_SKILL_MAP.json",
+      "co_checksum": true
+    },
+    {
+      "ten": "NEGATIVE_TRIGGER_SEMANTIC_AUDIT.json",
+      "co_checksum": true
+    },
+    {
+      "ten": "OWNER_DECISION_MATRIX.json",
+      "co_checksum": true
+    },
+    {
+      "ten": "FINAL_NOTION_SYNC_PROPOSAL.json",
+      "co_checksum": true
+    },
+    {
+      "ten": "skill-routing-overrides.yml",
+      "co_checksum": true
+    },
+    {
+      "ten": "skills.yml",
+      "co_checksum": true
+    },
+    {
+      "ten": "skill-routing-contract.md",
+      "co_checksum": true
+    },
+    {
+      "ten": "skill-receipt-examples.md",
+      "co_checksum": true
+    },
+    {
+      "ten": "cursor-native-canary.md",
+      "co_checksum": true
+    },
+    {
+      "ten": "notion-skill-routing-contract.md",
+      "co_checksum": true
+    },
+    {
+      "ten": "skill-router.mjs",
+      "co_checksum": true
+    },
+    {
+      "ten": "skill-router.test.mjs",
+      "co_checksum": true
+    },
+    {
+      "ten": "skills-registry-build.mjs",
+      "co_checksum": true
+    }
+  ],
+  "ghi_chu_loc": "Ban CONG KHAI: da bo ma bam tung tep nguon va duong dan noi bo theo quy tac an toan bao cao. Ban day du giu trong kho rieng.",
+  "y_nghia_checksum": "Checksum duoi day chung minh tep JSON nay khong bi sua sau khi phat hanh. No KHONG phai xac nhan doc lap cua ben thu ba."
+}
