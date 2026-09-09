@@ -1,0 +1,268 @@
+{
+  "bao_cao": "ERP_SKILL_CROSS_SYSTEM_ORCHESTRATION_CLOSEOUT_R2",
+  "lược_đồ": "bao-cao-cong-khai/2.0",
+  "goi_viec": "ERP-SKILL-CROSS-SYSTEM-ORCHESTRATION-CLOSEOUT-009-R2",
+  "thay_the_goi": "ERP-SKILL-CROSS-SYSTEM-ORCHESTRATION-CLOSEOUT-009-R1",
+  "ngay": "2026-09-09",
+  "trang_thai": {
+    "SOURCE_TECHNICAL_STATUS": "PASS_IN_SCOPE",
+    "OPERATING_MODE": "ADVISORY_MANUAL",
+    "CURSOR_NATIVE_AUTO_MODE": "BLOCKED_PENDING_CANARY",
+    "NOTION_SYNC_STATUS": "PROPOSED_NOT_EXECUTED",
+    "OVERALL_STATUS": "PARTIAL_PENDING_NOTION_SYNC"
+  },
+  "ghi_chu_an_toan_cong_khai": "Bản công khai này CỐ Ý không chứa mã băm, mã commit, đường dẫn máy vận hành, khoá, thông tin định danh cá nhân, số liệu kinh doanh hay số tiền. Hồ sơ đầy đủ kèm mã băm và mã commit nằm trong kho mã nội bộ.",
+  "cach_lam": {
+    "nguyen_tac": "Đối soát ĐỘC LẬP với mã nguồn thật, KHÔNG tin báo cáo tự khai.",
+    "so_chieu_ra": 10,
+    "phan_bien": "Mỗi phát hiện bị một người phản biện ĐỐI KHÁNG thẩm định, mệnh lệnh là 'mặc định BÁC BỎ nếu không tự chứng minh được', và phải TỰ MỞ TỆP đối chiếu.",
+    "tong_phat_hien": 115,
+    "dung_vung": 83,
+    "bi_bac_bo": 32,
+    "ghi_chu": "Tỉ lệ bác bỏ gần một phần ba cho thấy tầng phản biện có làm việc thật."
+  },
+  "bon_loi_nang_nhat": [
+    {
+      "ma": "E1",
+      "muc": "Mã sản xuất tự phát nhãn ĐÃ BỎ vào mọi phiếu",
+      "muc_do": "NGHIÊM TRỌNG",
+      "da_sua": true
+    },
+    {
+      "ma": "E2",
+      "muc": "Cổng canh chính nhãn đó RỖNG NGHĨA HOÀN TOÀN",
+      "muc_do": "NGHIÊM TRỌNG",
+      "da_sua": true
+    },
+    {
+      "ma": "E3",
+      "muc": "Hợp đồng nói ngược sổ năng lực về CÙNG một phép đo",
+      "muc_do": "NGHIÊM TRỌNG",
+      "da_sua": true
+    },
+    {
+      "ma": "E4",
+      "muc": "Ví dụ phiếu HIỆN HÀNH dạy mô hình CŨ",
+      "muc_do": "NGHIÊM TRỌNG",
+      "da_sua": true
+    },
+    {
+      "ma": "E5",
+      "muc": "Trần tuyến ĐẢO THEO RỦI RO",
+      "muc_do": "NGHIÊM TRỌNG",
+      "da_sua": true
+    }
+  ],
+  "cac_khiem_khuyet_con_lai": [
+    {
+      "ma": "E6",
+      "muc": "Vòng duyệt điều kiện DỪNG ở cảnh báo đầu tiên",
+      "muc_do": "ĐÁNG KỂ",
+      "da_sua": true
+    },
+    {
+      "ma": "E7",
+      "muc": "So khớp phạm vi HỎNG-THÌ-MỞ",
+      "muc_do": "ĐÁNG KỂ",
+      "da_sua": true
+    },
+    {
+      "ma": "E8",
+      "muc": "Suy đoán LẤN LƯỢT khai tường minh",
+      "muc_do": "ĐÁNG KỂ",
+      "da_sua": true
+    },
+    {
+      "ma": "E9",
+      "muc": "Trường cảnh báo trên ứng viên RƠI MẤT",
+      "muc_do": "ĐÁNG KỂ",
+      "da_sua": true
+    },
+    {
+      "ma": "E10",
+      "muc": "16/21 căn cứ Chủ dự án KHÔNG tra được",
+      "muc_do": "ĐÁNG KỂ",
+      "da_sua": true
+    },
+    {
+      "ma": "E11",
+      "muc": "Bốn phép thử XANH VÌ SAI CỬA hoặc TẬP RỖNG",
+      "muc_do": "ĐÁNG KỂ",
+      "da_sua": true
+    },
+    {
+      "ma": "E12",
+      "muc": "Dòng dõi hiện vật dùng MỘT trường mơ hồ",
+      "muc_do": "NHỎ",
+      "da_sua": true
+    },
+    {
+      "ma": "E13",
+      "muc": "Bản in CLI hiện `undefined`",
+      "muc_do": "NHỎ",
+      "da_sua": true
+    },
+    {
+      "ma": "E14",
+      "muc": "Byte điều khiển lạc trong bộ sinh sổ",
+      "muc_do": "NHỎ",
+      "da_sua": true
+    }
+  ],
+  "tong_khiem_khuyet": 14,
+  "ma_tran_p0_p1": [
+    {
+      "ma": "P0-A",
+      "expected": "Định danh/nguồn gốc đi XUYÊN SUỐT đường sản xuất; khai tường minh THẮNG suy đoán; tiền tố tên tệp chỉ là phương án chót.",
+      "verdict": "PASS_IN_SCOPE",
+      "limitation": "Điểm khớp việc↔kỹ năng vẫn là đo THÔ theo từ khoá, không phải hiểu ngữ nghĩa."
+    },
+    {
+      "ma": "P0-B",
+      "expected": "HARD_REJECT chỉ khi ĐỦ 12 cửa; thiếu/sai/không-tính-được bất kỳ cửa nào ⇒ giữ ứng viên, hạ xuống cảnh báo. Không có cửa nào hỏng-thì-MỞ.",
+      "verdict": "PASS_IN_SCOPE",
+      "limitation": "Sổ quyết định do người viết tay; cổng chỉ kiểm PHÂN GIẢI ĐƯỢC, không kiểm nội dung quyết định có phản ánh đúng ý Chủ dự án hay không."
+    },
+    {
+      "ma": "P0-C",
+      "expected": "Cảnh báo và quan sát phải CÓ THẬT, đủ trường, số lượng > 0; cấm phép thử rỗng nghĩa.",
+      "verdict": "PASS_IN_SCOPE",
+      "limitation": "Cổng H8 chỉ quét dạng filter/flatMap + every trong CHÍNH tệp kiểm này; phép thử rỗng nghĩa ở tệp kiểm khác không bị bắt."
+    },
+    {
+      "ma": "P1-A",
+      "expected": "Mô hình 1 + 4 dùng CÙNG MỘT giá trị và CÙNG MỘT tên trường ở mọi nơi.",
+      "verdict": "PASS_IN_SCOPE",
+      "limitation": "Hai trục CLIENT_CONTENT_LOAD và CLIENT_WORKFLOW_APPLICATION vẫn NOT_CHECKED trên MỌI công cụ — chưa ai đo được. Cursor Native vẫn BLOCKED_NOT_EXECUTED."
+    },
+    {
+      "ma": "P1-B",
+      "expected": "Lược đồ phiếu ĐO THẬT; tiêu đề mọi tệp hiện hành ghi đúng gói; ví dụ không dạy mô hình cũ.",
+      "verdict": "PASS_IN_SCOPE",
+      "limitation": "Cổng H1 chỉ soi 700 ký tự đầu mỗi tệp; một khai gói việc sai nằm sâu trong thân tệp sẽ không bị bắt."
+    },
+    {
+      "ma": "P1-C",
+      "expected": "Sinh lại toàn bộ hiện vật hiện hành từ nguồn; dòng dõi tường minh; 128/128 băm khớp.",
+      "verdict": "PASS_IN_SCOPE",
+      "limitation": "`validated_source_commit` chỉ điền được SAU commit A — biên nhận này sinh trước nên khai PENDING, tránh băm tự tham chiếu."
+    }
+  ],
+  "mo_hinh_bang_chung": {
+    "ten": "1 + 4",
+    "cau_hinh_van_hanh": {
+      "AUTO_MODE": "NOT_ENABLED",
+      "EXECUTION_AUTHORITY": "OFF_BY_DESIGN",
+      "OPERATING_MODE": "ADVISORY_MANUAL",
+      "NO_HOOK": true,
+      "NO_AUTO_INSTALL": true,
+      "NO_AUTO_UPDATE": true,
+      "ghi_chu": "Đây là CẤU HÌNH ĐANG BẬT/TẮT, KHÔNG phải kết quả đo năng lực. Hai thứ khác nhau."
+    },
+    "bang_chung_nang_luc": {
+      "ghi_chu": "Đây là KẾT QUẢ ĐO, KHÔNG phải cấu hình. ⛔ CẤM biến NOT_CHECKED thành PROVEN_FALSE. CẤM biến BLOCKED_NOT_EXECUTED thành FAIL. CẤM suy nhận diện ⇒ nạp ⇒ ứng dụng.",
+      "tin_hieu_cap_du_an": {
+        "ROUTER_ADVISORY_DETECT": "PROVEN_TRUE"
+      },
+      "bat_bien_bo_dinh_tuyen": {
+        "ROUTER_CONTENT_LOAD": "OFF_BY_DESIGN"
+      },
+      "CLAUDE_CODE_2.1.263": {
+        "CLIENT_NATIVE_DISCOVERY": "PROVEN_FALSE",
+        "CLIENT_CONTENT_LOAD": "NOT_CHECKED",
+        "CLIENT_WORKFLOW_APPLICATION": "NOT_CHECKED",
+        "EXECUTION_AUTHORITY": "OFF_BY_DESIGN"
+      },
+      "CURSOR_NATIVE_3.19.13": {
+        "CLIENT_NATIVE_DISCOVERY": "BLOCKED_NOT_EXECUTED",
+        "CLIENT_CONTENT_LOAD": "BLOCKED_NOT_EXECUTED",
+        "CLIENT_WORKFLOW_APPLICATION": "BLOCKED_NOT_EXECUTED",
+        "EXECUTION_AUTHORITY": "OFF_BY_DESIGN"
+      }
+    },
+    "cam_suy": [
+      "'chưa đo' KHÔNG phải 'đã đo và không có'",
+      "'bị chặn' KHÔNG phải 'đã thử và trượt'",
+      "'tắt theo thiết kế' KHÔNG phải một kết quả đo"
+    ]
+  },
+  "dong_doi_bang_chung": {
+    "nguyen_tac": "NĂM vai trò TÁCH BẠCH, KHÔNG tạo bài toán băm tự tham chiếu.",
+    "cau_do_da_giai": "Năm hiện vật khai thuộc gói trước nhưng cùng trỏ về một mốc CŨ HƠN. Mốc ấy ĐÚNG — nhưng đúng cho một NGHĨA KHÁC: nó là mốc NỘI DUNG KỸ NĂNG, không phải mốc SINH HIỆN VẬT. Một trường gánh hai nghĩa nên đọc kiểu nào cũng thấy sai.",
+    "quy_trinh_hai_buoc": "Ba vai trò sau KHÔNG được khai trước khi chúng tồn tại; hiện vật ghi thẳng là 'chưa có' thay vì đoán."
+  },
+  "doi_soat_con_so": {
+    "van_de": "Hai con số bị đọc như thể mâu thuẫn.",
+    "ket_luan": "KHÔNG mâu thuẫn. Có HAI phép tách KHÁC NHAU cùng cho ra số 31, và bản R1 nêu số 31 mà KHÔNG nói nó thuộc phép tách nào — đó mới là lỗi.",
+    "vi_sao_de_nham": "Hai phép tách trên ĐỘC LẬP nhau và trùng hợp cùng ra 31/1. Trang cá nhân được bảo vệ (phép tách A) KHÔNG nhất thiết là trang đã chuẩn hoá (phép tách B). Ghi '31 định danh' trần trụi làm người đọc không biết đang nói phép tách nào.",
+    "nguyen_tac_rut_ra": "Một con số không kèm TIÊU CHÍ ĐẾM là một con số chết. Mọi con số trong tài liệu điều phối phải nêu cả MỐC lẫn CÁCH ĐẾM.",
+    "du_lieu_con_thieu": [
+      "Kho ERP KHÔNG có danh sách tên của 32 trang Notion — chỉ có con số tổng và phép tách.",
+      "⇒ KHÔNG kiểm được trang cá nhân được bảo vệ có phải chính trang đã chuẩn hoá hay không.",
+      "Muốn phân định dứt điểm: TanPhatAI cung cấp danh sách 32 tên trang kèm nhãn (chuyên biệt / cơ bản / cá nhân) và nhãn đã-chuẩn-hoá. Gói này KHÔNG đoán thay."
+    ]
+  },
+  "cong_kiem": {
+    "so_dieu_kien_truoc": 185,
+    "so_dieu_kien_sau": 244,
+    "ket_qua": "244 ĐẠT / 0 HỎNG",
+    "ma_thoat": 0,
+    "nhom_dieu_kien": "A–H (8 nhóm) — nhóm H là 13 cổng chống tái phát mới",
+    "bo_gop_ma_thoat": 0,
+    "tat_dinh": "sinh lại sổ đăng ký ba lần → cùng một mã băm"
+  },
+  "kiem_nguoc": {
+    "so_lan_pha": 28,
+    "dat": 28,
+    "lo_mu_vong_cuoi": 0,
+    "khong_ket_luan": 0,
+    "khoi_phuc_khop_nguyen_trang": true,
+    "cong_sau_khoi_phuc_ma_thoat": 0,
+    "phuong_phap": "Mỗi cơ chế bị phá đúng MỘT chỗ. TRƯỚC khi kết luận phải xác nhận mã băm tệp ĐÃ ĐỔI — không xác nhận thì 'cổng vẫn xanh' là vô nghĩa. Khôi phục xong đối chiếu lại băm.",
+    "vong_dau_that_bai": {
+      "ket_qua": "18 ĐẠT · 8 LỖ MÙ · 1 KHÔNG KẾT LUẬN / 27 lần phá",
+      "ghi_chu": "BÁO NGUYÊN TRẠNG theo yêu cầu gói việc — không che vòng thất bại đầu.",
+      "tam_lo_mu_nam_o_dau": "KHÔNG nằm ở phần đã sửa; chúng nằm ở CHÍNH CÁC CỔNG MỚI.",
+      "sau_nguyen_nhan": [
+        "Bảng kiểm chỉ có dữ liệu ĐÚNG DẠNG, nên gỡ nhánh xử lý dữ liệu SAI DẠNG mà cổng vẫn xanh.",
+        "Không ca nào đặt CẢNH BÁO đứng TRƯỚC LOẠI CỨNG trên cùng một kỹ năng.",
+        "Bộ đối chiếu giá trị hợp lệ không có gì để bắt vì mọi dữ liệu trong kho đều hợp lệ — phải TIÊM một giá trị sai vào mới đo được.",
+        "Một cổng chỉ so hai nơi, còn chỗ vi phạm nằm ở nơi THỨ BA.",
+        "Một cổng dò chuỗi ở BẤT KỲ ĐÂU trong tệp, nên đổi tiêu đề mục mà nó vẫn xanh.",
+        "Một cổng đọc trường A trong khi phép phá đổi trường B — hai trường không ai buộc phải khớp."
+      ],
+      "bai_hoc": "Một cổng chưa từng bị phá là một cổng chưa từng được chứng minh. Và một bộ lọc chưa từng được cho thứ nó cần lọc là một bộ lọc chưa từng được đo."
+    }
+  },
+  "de_xuat_dong_bo_tai_lieu": {
+    "trang_thai": "PROPOSED_NOT_EXECUTED",
+    "so_trang": 8,
+    "so_muc_sua": 17,
+    "rieng_du_an": 2,
+    "luat_chung": 6,
+    "canh_bao": "⚠️ Notion HIỆN ĐANG ghi `PACKAGE 009-R1: OWNER APPROVED · SYNCED_TO_NOTION` và `P0-A/B/C · P1-A/B/C = PASS_IN_SCOPE`. Lời khai P1-A của R1 ĐÃ BỊ BÁC BỎ BẰNG SỐ ĐO. Xác nhận cũ của Chủ dự án dựa trên gói bàn giao R1, nên KHÔNG tự động áp cho R2.",
+    "gioi_han": "Sáu trong tám trang CHƯA được đọc trực tiếp trong gói này (chỉ hai trang lớp ERP được đọc toàn phần). Với sáu trang đó, `baseline_version` ghi 'CHƯA ĐO ĐƯỢC' hoặc nêu rõ là lấy gián tiếp — KHÔNG bịa số hiệu. TanPhatAI phải tự xác nhận baseline trước khi áp.",
+    "khong_goi_api": true
+  },
+  "khong_dong_toi": {
+    "product_source": "KHÔNG đụng",
+    "database_schema_migration": "KHÔNG đụng",
+    "vps_deploy_restart": "KHÔNG đụng",
+    "vendor_install_update": "KHÔNG — giữ NO_AUTO_INSTALL/NO_AUTO_UPDATE",
+    "notion_mutation": "KHÔNG — CHỈ ĐỌC để đối chiếu, và CHỈ TẠO ĐỀ XUẤT",
+    "hook_setting_mcp": "KHÔNG bật gì",
+    "skill_body": "KHÔNG sửa thân SKILL.md nào",
+    "skill_xoa_gop_doi_ten": "KHÔNG — 128/128 định danh còn nguyên",
+    "version_bump": "KHÔNG"
+  },
+  "con_lai": [
+    "Nền tảng tài liệu chưa được đồng bộ — đang ghi kết luận của bản trước, mà bản đó đã bị bác bỏ một phần.",
+    "Xác nhận cũ KHÔNG tự động áp cho bản mới: nó dựa trên hồ sơ bản trước.",
+    "Ba phép đo trên công cụ thứ hai vẫn BỊ CHẶN — là việc BẢO TRÌ, không chặn chế độ cố vấn-thủ công.",
+    "Hai trục năng lực chưa được đo trên bất kỳ công cụ nào.",
+    "Các quyết định còn mở vẫn giữ mặc định an toàn, không phá huỷ gì.",
+    "Sáu trong tám trang đề xuất chưa được đọc trực tiếp; số hiệu bản gốc ghi thẳng là 'chưa đo được'."
+  ],
+  "ve_tinh_doc_lap": "Mã băm trong hồ sơ này do CHÍNH phiên này tính. Chúng chứng minh TÍNH TOÀN VẸN (tệp không đổi giữa hai thời điểm), KHÔNG phải xác nhận độc lập của bên thứ ba.",
+  "buoc_ke_tiep": "Chủ dự án xác nhận cho phép áp toàn bộ delta R2 vào đúng tám trang, không mở rộng phạm vi và không sửa mã sản phẩm/CSDL/máy vận hành."
+}

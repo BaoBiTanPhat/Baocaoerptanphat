@@ -1,6 +1,6 @@
 # ĐÍNH CHÍNH BÁO CÁO AUDIT SÂU 13 KỸ NĂNG
 
-> **Đính chính cho:** [AUDIT-DEEP-SKILL-CONSOLIDATION-20260904.md](https://github.com/irissnss/Baocaoerptanphat/blob/main/AUDIT-DEEP-SKILL-CONSOLIDATION-20260904.md)
+> **Đính chính cho:** [AUDIT-DEEP-SKILL-CONSOLIDATION-20260904.md](https://github.com/BaoBiTanPhat/Baocaoerptanphat/blob/main/AUDIT-DEEP-SKILL-CONSOLIDATION-20260904.md)
 > **Do gói việc:** `ERP-SKILL-ROUTING-CANARY-005` · **Ngày:** 04/09/2026
 > **Bản gốc GIỮ NGUYÊN làm bằng chứng lịch sử** — không sửa, không gỡ. Tệp này chỉ bổ sung đính chính.
 

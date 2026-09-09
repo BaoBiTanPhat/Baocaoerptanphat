@@ -618,11 +618,11 @@ Là kỹ năng DUY NHẤT trong 11 giữ được lớp R0 sau khi phân loại 
 
 | Hạng mục | Giá trị |
 |---|---|
-| Báo cáo này | [ERP-SKILL-ROUTING-CANARY-005-20260904.md](https://github.com/irissnss/Baocaoerptanphat/blob/main/ERP-SKILL-ROUTING-CANARY-005-20260904.md) |
-| Artefact JSON | [ERP-SKILL-ROUTING-CANARY-005-20260904.json](https://github.com/irissnss/Baocaoerptanphat/blob/main/ERP-SKILL-ROUTING-CANARY-005-20260904.json) |
+| Báo cáo này | [ERP-SKILL-ROUTING-CANARY-005-20260904.md](https://github.com/BaoBiTanPhat/Baocaoerptanphat/blob/main/ERP-SKILL-ROUTING-CANARY-005-20260904.md) |
+| Artefact JSON | [ERP-SKILL-ROUTING-CANARY-005-20260904.json](https://github.com/BaoBiTanPhat/Baocaoerptanphat/blob/main/ERP-SKILL-ROUTING-CANARY-005-20260904.json) |
 | Checksum artefact | `a2ce65d7007d6e586122700e69ef1661cac72bf974b1fd5dfb85db917be9dcf4` |
-| Bản đính chính AUDIT-004 | [AUDIT-DEEP-SKILL-CONSOLIDATION-20260904-ERRATA.md](https://github.com/irissnss/Baocaoerptanphat/blob/main/AUDIT-DEEP-SKILL-CONSOLIDATION-20260904-ERRATA.md) |
-| Báo cáo AUDIT-004 (giữ nguyên) | [AUDIT-DEEP-SKILL-CONSOLIDATION-20260904.md](https://github.com/irissnss/Baocaoerptanphat/blob/main/AUDIT-DEEP-SKILL-CONSOLIDATION-20260904.md) |
+| Bản đính chính AUDIT-004 | [AUDIT-DEEP-SKILL-CONSOLIDATION-20260904-ERRATA.md](https://github.com/BaoBiTanPhat/Baocaoerptanphat/blob/main/AUDIT-DEEP-SKILL-CONSOLIDATION-20260904-ERRATA.md) |
+| Báo cáo AUDIT-004 (giữ nguyên) | [AUDIT-DEEP-SKILL-CONSOLIDATION-20260904.md](https://github.com/BaoBiTanPhat/Baocaoerptanphat/blob/main/AUDIT-DEEP-SKILL-CONSOLIDATION-20260904.md) |
 | Checksum AUDIT-004 | `65663abb759aa606c935dbbec97375d1bd7dcda9ed4a3c9016be5ad188d000d6` — đã xác minh lại, KHỚP |
 | Điểm chốt kho riêng | **KHÔNG công bố** — giao riêng cho Chủ dự án và TanPhatAI |
 

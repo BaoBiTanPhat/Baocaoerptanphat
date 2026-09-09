@@ -1667,8 +1667,9 @@ trúc dữ liệu, không đổi dữ liệu thật, không đổi phân quyền
 
 ## 🔗 Liên Kết
 
-- **Main repo (private):** `irissnss/erptanphat`
-- **Báo cáo này (public):** [`irissnss/Baocaoerptanphat`](https://github.com/irissnss/Baocaoerptanphat)
+- **Main repo (private):** `BaoBiTanPhat/erptanphat`
+- **Báo cáo này (public):** [`BaoBiTanPhat/Baocaoerptanphat`](https://github.com/BaoBiTanPhat/Baocaoerptanphat)
+- ℹ️ *Chủ kho đã đổi 06/09/2026: tài khoản cá nhân `irissnss` → tổ chức `BaoBiTanPhat`.*
 - **Notion workspace:** tài liệu quản trị nội bộ
 
 ---
