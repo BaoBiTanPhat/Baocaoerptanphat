@@ -322,6 +322,29 @@ trước khi `pop`.
 
 ---
 
+### Sự cố thứ hai — tôi đẩy bản công khai chưa che, cổng bắt được
+
+Tôi đẩy bản công khai lần đầu mà **chưa chạy cổng an toàn báo cáo công khai**. Cổng
+chạy sau đó bắt **hai điều**: bản đó có mã nguồn của kho riêng, vân tay bản dựng, mã
+băm bản kê — và **số lượng khách chính xác**. (Bản anh đang đọc đã che cả hai.)
+
+Tôi đã tự lý luận rằng số lượng khách chỉ là "số lượng kỹ thuật" nên công khai được.
+**Cổng đúng, tôi sai** — trong chính mã của cổng có ghi sẵn bài học ngày 03/09 về
+đúng lỗi này: *"báo cáo từng tự ghi «công khai-an toàn vì chỉ nêu số lượng» — SAI.
+Chính con số đó LÀ dữ liệu kinh doanh."*
+
+**Đã khắc phục đúng cách cổng chỉ định:** che bằng **một commit mới**
+(`«lần đẩy 2 — mã ghi ở bản nội bộ»`), **không viết lại lịch sử, không đẩy ép**
+— đúng chỉ thị Owner sổ `#224`. Cổng nay **7/7 sạch** trên toàn bộ 147 tệp báo cáo.
+
+**Thứ đã lộ trong lịch sử kho công khai:** mã commit của kho riêng, vân tay một bản
+dựng trên máy phát triển, mã băm các tệp bản in, và hai con số đếm khách.
+**KHÔNG lộ:** mật khẩu, khoá, địa chỉ máy chủ, tên hay địa chỉ khách hàng nào.
+
+**Bài học đã ghi:** chạy cổng công khai **TRƯỚC** khi đẩy, không phải sau.
+
+---
+
 ## ⑨ CHƯA XÁC MINH ĐƯỢC
 
 | Điều | Vì sao | Ai xác minh được |
@@ -373,10 +396,13 @@ trước khi `pop`.
 
 5. PUSH BÁO CÁO CÔNG KHAI
    [x] ĐÃ PUSH — kho Baocaoerptanphat
-       commit «mã commit — ghi ở bản nội bộ»
+       commit «lần đẩy 1 — mã ghi ở bản nội bộ»  (đẩy lần 1)
+       commit «lần đẩy 2 — mã ghi ở bản nội bộ»  (che nội dung — xem mục ⑧)
        file   BUSINESS-PILOT-M1-M3-20260911.md
               + ban-in-bao-gia-20260911/ (16 tệp: 5 HTML · 5 PDF · 5 ảnh · README)
-       17 tệp đổi · 3.325 dòng thêm
+       Bản công khai ĐÃ CHE: mã nguồn kho riêng · vân tay bản dựng · mã băm
+       bản kê · số lượng khách chính xác. Nội dung nghiệp vụ giữ nguyên.
+       Cổng `npm run test:bao-cao-cong-khai` → 7/7 PASS trên 147 tệp.
 
 6. CÒN SÓT / CHƯA LÀM
    - Chưa commit bản phát hành V1.00.371, chưa đẩy, chưa triển khai (đúng luật gói)
