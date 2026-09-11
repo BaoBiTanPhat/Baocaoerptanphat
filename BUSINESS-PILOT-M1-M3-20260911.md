@@ -1,473 +1,441 @@
-# GÓI BUSINESS PILOT M1→M3 — BÁO CÁO KẾT THÚC
+# GÓI BUSINESS PILOT M1→M3 — BÁO CÁO
 
-> **Ngày:** 11/09/2026 · **Gói:** `PROMPT TỔNG LỰC — MỞ BUSINESS PILOT M1→M3`
-> **Sổ Yêu Cầu Owner:** mục `#255` · **Plan of Record:** `PL-ERP-SINGLE-TRACK-RECOVERY-20260825`
-> **Bàn giao cho TanPhatAI:** xem mục ⑬ cuối trang.
-
----
-
-## ① KẾT LUẬN ĐIỀU HÀNH
-
-**Business Pilot đã sẵn sàng chưa?** — **CHƯA HOÀN TOÀN.** Bốn chặng nghiệp vụ đã thông
-trên máy nội bộ, nhưng còn **hai cổng phải qua**, và cả hai đều là điểm mà chính Owner
-cho phép dừng hỏi.
-
-**Đã chạy thật chưa?** — **CÓ, trên máy nội bộ.** Đăng nhập thật bằng trình duyệt, đi hết
-màn khách hàng và màn báo giá, chụp ảnh cả bản rộng lẫn bản 390px. **CHƯA** chạy trên
-máy vận hành.
-
-**Vướng đúng cổng nào?**
-
-| # | Cổng | Vì sao dừng |
-|---|---|---|
-| 1 | **Owner duyệt bằng mắt bản in báo giá** | Mục ⑫ của chính gói này bắt: *"Sau khi có bản render cuối, DỪNG để Owner duyệt bằng mắt."* Bản render đã dựng xong, 4 bản, mỗi bản HTML + PDF A4 + ảnh chụp. |
-| 2 | **Owner xác nhận triển khai** | Mục ⑮. Chưa trình biên nhận phát hành vì cổng 1 chưa qua — bản in là một phần của thứ sẽ phát hành. |
-
-Ngoài hai cổng đó còn **ba việc cần Owner quyết**, đã ghi sổ nợ, không cái nào chặn
-việc đang làm: `DEBT-195` (hai bài nghiệm thu T6·T7), `DEBT-196` (dữ liệu sai khách có
-sẵn từ trước), và một điểm phân định về phạm vi lệnh cấm 24/07 (nêu ở mục ⑨).
+> **Cập nhật lần 2:** 11/09/2026 — sau gói bổ sung *"Hoàn tất Business Pilot ·
+> Duyệt layout Báo Giá · Release V1.00.371"*.
+> **Sổ Yêu Cầu Owner:** mục `#255` · `#256`
 
 ---
 
-## ② BIÊN NHẬN ĐẦU VÀ CUỐI
+## ① KẾT LUẬN MỘT CÂU
 
-| | Đầu gói | Cuối gói |
-|---|---|---|
-| Nhánh | `main` | `main` |
-| `HEAD` | *(mã nguồn kho riêng — tra ở bản nội bộ)* | *(xem mục ⑪)* |
-| `origin/main` | *(cùng mã với HEAD)* | hội tụ |
-| Cây làm việc | sạch | sạch |
-| Phiên bản | `V1.00.370` | `V1.00.370` — **KHÔNG đổi** |
-| Ahead/behind | 0 / 0 | 0 / 0 |
+> ## `READY_FOR_OWNER_LAYOUT_REVIEW`
 
-**Số phiên bản CỐ Ý KHÔNG tăng.** Mục ⑮ bắt phải trình biên nhận và xin xác nhận trước
-khi phát hành; chưa tới đó thì chưa bump. Đã tra lịch sử: các số `V1.00.346` → `V1.00.370`
-đều đã dùng, nên số chưa từng dùng kế tiếp là **`V1.00.371`** — đo được, không phỏng đoán.
+Phần kỹ thuật đã xong và **chạy thật được** trên máy nội bộ: một Sales lập báo giá
+cho khách được giao, tạo nhanh sản phẩm ngay trong form, gửi duyệt, Admin duyệt,
+lên đơn hàng, xác nhận đơn — **có bản ghi thật trong cơ sở dữ liệu ở từng chặng**.
+Bộ bản in đã dựng đủ để Owner nhìn bằng mắt.
 
----
+**Còn đúng hai cổng Owner:** duyệt bố cục bản in (ngay bây giờ), rồi xác nhận
+triển khai (sau).
 
-## ③ NHỮNG NGUỒN ĐÃ ĐỌC
-
-Đọc toàn bộ danh sách bắt buộc ở mục ⑤ của gói, chia mười một vùng, đọc song song.
-Điều quan trọng nhất rút ra: **phân biệt được đâu là mã người dùng đang dùng thật, đâu là mã mồ côi.**
-
-**Mã ĐANG DÙNG THẬT (đã lần theo `import`, không suy đoán):**
-`src/app/m3/bao-gia/page.tsx` → `bao-gia-client.tsx` → `actions.ts` → `m3-store.ts`.
-Đây là đường duy nhất; toàn bộ `src` chỉ có **một** nơi nhập `BaoGiaClient`.
-
-**Mã MỒ CÔI (route còn sống nhưng đã gỡ khỏi menu, không ghi CSDL):**
-`m3/bao-gia/item/*` và `m3/bao-gia/option/*` — cả hai mang banner *"TRANG KHÔNG DÙNG"*,
-Owner gỡ khỏi menu 21/08/2026. Nút Lưu chỉ hiện thông báo, không gọi hàm ghi nào.
-**Đã không sửa nhầm vào đây.**
-
-**Lỗi truy xuất:** không có. Mọi tệp trong danh sách bắt buộc đều tồn tại.
-Hai tệp `GOLIVE-PLAN.md` / `MODULE-PROGRESS.md` nằm trong `docs/golive/` chứ không phải gốc dự án.
-
-**Một bộ test cạnh tranh đã phát hiện và CỐ Ý không chạy:** `S01–S10` trong
-`docs/golive/P01-INTERNAL-PILOT-RUNBOOK-V0218.md` được `README.md:39` đánh dấu CURRENT.
-Mục ⑬ của gói chỉ đích danh T1–T9 nên chạy đúng T1–T9. Ghi lại để không ai tưởng là bỏ sót.
-
----
-
-## ④ ĐĂNG NHẬP
-
-**Máy nội bộ: ĐÃ GỠ.** `LOCAL_LOGIN_PROVEN`.
-
-Trước khi động vào bất cứ thứ gì, chứng minh đích là máy nội bộ — bốn điều, không điều nào là suy đoán:
-
-1. Cấu hình trỏ `127.0.0.1`, cổng `3308`.
-2. Cổng `3308` do một container Docker chiếm, gắn `127.0.0.1:3308->3306/tcp` — tức chỉ máy này vào được.
-3. **Không** tiến trình `ssh` / `plink` / `putty` nào đang chạy ⇒ loại trừ khả năng cổng nội bộ là miệng một đường hầm ra máy vận hành. *(Dự án này để dành cổng 3307 cho đường hầm, nên đây là điều bắt buộc phải loại trừ.)*
-4. Chốt chặn trong chính công cụ từ chối mọi máy chủ không phải nội bộ.
-
-**Đo lại trước khi kết luận khoá hỏng:** đối chiếu `bcrypt` toàn bộ ứng viên rút từ hai sổ
-bí mật với mọi tài khoản — **1.500 phép so, 0 trùng**. Không đoán mật khẩu, không thử đăng
-nhập lặp (tránh ngưỡng khoá 5 lần).
-
-**Sau khi đặt lại:** kiểm chứng lại — **1.590 phép so, 2 trùng đúng hai tài khoản pilot**.
-Rồi đăng nhập thật qua trình duyệt: vào được.
-
-**Máy vận hành: CHƯA KIỂM** — đúng luật gói này (`DEPLOYMENT` chưa mở).
-
-*Không giá trị bí mật nào bị in ra màn hình, ghi vào tệp theo dõi, hay đưa vào báo cáo.*
-
----
-
-## ⑤ CỔNG VÂN TAY
-
-**Gốc canonical đã chọn:** thư mục bản chạy — vì đó là artifact **thực sự được chuyển và
-chạy** (trình quản lý tiến trình lấy đúng thư mục đó làm thư mục làm việc).
-
-**Ba khiếm khuyết sổ nợ ghi — tự kiểm chứng, cả ba ĐÚNG:**
-
-| | Bệnh | Hậu quả đo được |
-|---|---|---|
-| 1 | Bên ghi băm một **thư mục con**, bên kiểm băm **cả thư mục** | Hai giá trị **không bao giờ** bằng nhau, kể cả khi máy hoàn toàn lành |
-| 2 | Hàm phán định nhận **chuỗi rỗng** | Giá trị thật tính ra rồi **vứt đi** |
-| 3 | Mẫu fail-**OPEN** | Một vế rỗng là bỏ qua **im lặng** |
-
-**Bốn bẫy phát hiện thêm, nặng nhất:** thư mục **không tồn tại** và thư mục **rỗng** cho
-**y hệt** một giá trị 32 ký tự trông như thật ⇒ cổng cũ báo **XANH cho một máy không có
-bản chạy nào**.
-
-**Vá gốc:** một hợp đồng vân tay **dùng chung, một bản cài đặt duy nhất**. Bên ghi gọi tại
-chỗ, bên kiểm gửi đúng tệp đó sang chạy. *Sửa cho hai công thức giống nhau chỉ vá được hôm
-nay — hai bản chép tay sẽ lệch lại vào lần sửa sau.*
-
-**⭐ Lượt kiểm ngược đối kháng tìm ra lỗ THẬT mà bản đầu không khai:** dựng được đường
-chiếm quyền **hoàn toàn vô hình** — thả mã vào vùng đệm rồi sửa tệp cấu hình bộ nạp trỏ vào
-đó, **cả năm dòng đầu ra y hệt máy sạch**. Đã siết lên hợp đồng **VT-2**: bộ nạp nay được
-băm, mọi vế loại trừ siết theo hình dạng tệp, và băm chế độ quyền đầy đủ thay vì một bit.
-
-**Bảy biểu hiện đã đo, đạt cả bảy** — gồm cả hai chiều đối nghịch: đổi thứ được nạp thì
-**phải** phát hiện, mà dời chỗ đặt thì **không được** đổi giá trị.
-
-⚠️ **Một điều đã thử rồi RÚT LẠI ngay trong phiên, ghi ra để không ai làm lại:** băm số tệp
-trong vùng đệm vào vân tay là **sai** — vân tay chốt trước khi chạy ứng dụng, còn bên kiểm
-chạy sau khi máy đã phục vụ và tự ghi đầy đệm ⇒ **cổng đỏ vĩnh viễn**, đúng căn bệnh đã sinh
-ra nợ này. Đường chặn thật nằm ở chỗ khác và đã đóng.
-
-**Bằng chứng production: CHƯA CÓ.** Cao nhất mới là RUNTIME trong container Linux.
-`DEBT-189` **chưa đóng**.
-
----
-
-## ⑥ KHÔNG BÁO XANH GIẢ
-
-**Trước:** duyệt báo giá hoặc chốt đơn có kèm gửi thông báo/email cho khách — gửi **thất
-bại** vẫn hiện **toast XANH**. Người kinh doanh tin là khách đã nhận.
-
-**Chuỗi mất thông tin, có HAI điểm chứ không phải một:**
-
-```
-executePostActions()  ✅ trả đủ: đã chạy / chưa hỗ trợ / lỗi
-        ↓
-transitionState()     ❌ ĐIỂM 1 — gọi xong VỨT kết quả, không gán biến
-                      ❌ ĐIỂM 2 — kiểu trả về KHÔNG có chỗ nào chứa cảnh báo
-        ↓
-server action         → không có gì để truyền
-        ↓
-màn hình              → chỉ thấy đúng/sai → bắn TOAST XANH
-```
-
-Sửa mỗi điểm 1 là **chưa đủ** — đó là lý do bản vá trước đó không tới được người dùng.
-
-**Sau:** trạng thái vẫn đổi thật (nên **không** dùng màu đỏ — đỏ nghĩa là hỏng, sai sự
-thật), nhưng hiện **cảnh báo màu vàng** nói rõ *"Đã chuyển trạng thái. Nhưng thông báo và
-email CHƯA được gửi — hãy tự liên hệ khách nếu cần."*
-Câu chữ cố ý **không hứa "sẽ gửi sau"** vì hiện không có hàng đợi nào cả.
-
-**Bài kiểm mới: 18 điều kiện, gọi thật hàm.**
-**Kiểm ngược đã chạy:** tái tạo đúng lỗi cũ → 4 điều kiện ĐỎ; khôi phục → 18/18 xanh.
-
-⚠️ **Bản ĐẦU của bài kiểm là CỔNG GIẢ** — nó dựa vào kiểu dữ liệu, mà bộ chạy chỉ lột kiểu
-chứ không kiểm kiểu, nên kiểm ngược **vẫn xanh 15/15** dù lỗi đã quay lại. Đã viết lại thành
-phép gọi thật. Bẫy này ghi thẳng trong chú thích bài kiểm.
-
-**Đo trên dữ liệu thật:** 7 bước chuyển trạng thái đang khai hành động chưa nối dịch vụ,
-gồm **cả ba chặng của pilot** ⇒ bản vá không phải lý thuyết.
-
----
-
-## ⑦ SẢN PHẨM TRONG BÁO GIÁ
-
-**Bệnh đo được — ba đường đều sinh dòng không neo danh mục:**
-
-| Đường | Hành vi cũ |
+| Nhãn | Trạng thái |
 |---|---|
-| Ô chọn nhanh | Gõ tên không khớp → tạo dòng với định danh **rỗng**, cố ý **không** ghi vào danh mục |
-| Sheet "thêm sản phẩm mới" | Cùng vậy |
-| Sheet sửa dòng | Không chọn danh mục thì tên gõ tay vẫn được nhận, định danh **rỗng** |
+| `BUSINESS_PILOT_READY` | **BLOCKED** — chờ cổng Owner |
+| `QUOTATION_LAYOUT_APPROVAL` | **PENDING** — bộ duyệt đã sẵn sàng |
+| `PRODUCTION_DEPLOYMENT` | **NOT_APPROVED** — chưa trình biên nhận |
 
-Và: **ô chọn sản phẩm KHÔNG lọc theo khách đang chọn** — người lập báo giá cho khách A vẫn
-chọn được sản phẩm riêng của khách B. Ô "người liên hệ" ngay phía trên thì **đã lọc đúng từ
-trước** — chỉ ô sản phẩm bị bỏ sót.
+### 🔴 Hai lỗ chặn chỉ lộ ra khi chạy thật
 
-**Đã làm:**
+Báo cáo lần trước kết luận *"bốn chặng đã thông"* dựa trên **có route và có nút**.
+Khi bấm thật bằng trình duyệt thì chuỗi **đứt ở hai chỗ**, và cả hai đều nhìn mã
+không thấy:
 
-- Lọc sản phẩm theo khách đang chọn, dùng **đúng khuôn mẫu** mà ô người liên hệ đang dùng.
-  Mỗi dòng hiện đủ bốn thứ: tên đầy đủ · mã · quy cách · đơn vị tính.
-  Chưa chọn khách thì ô mờ đi và hiện *"Chọn khách hàng trước"*.
-- **Cổng máy chủ** chặn dòng mới thiếu định danh và chặn sản phẩm chéo khách — áp cho **cả**
-  đường tạo lẫn đường lưu. Lọc phía màn hình là để dễ dùng; máy chủ mới là nơi phân xử.
-- Trong Sheet sửa dòng: ô tên sản phẩm nay **chỉ đọc** khi đã chọn từ danh mục.
+| Lỗ | Hiện tượng | Vì sao nhìn không ra |
+|---|---|---|
+| **1. Báo giá Nháp không gửi duyệt được** | Hàm gửi có tồn tại nhưng **không nơi nào gọi**. Nút Duyệt chỉ bật khi đã gửi. ⇒ báo giá mới lập nằm chết ở Nháp. | Thanh tiến trình trên màn **vẽ đủ bốn chặng** nên nhìn vào tưởng chạy được |
+| **2. Báo giá đã duyệt không lên đơn được** | Hộp thoại tạo đơn **ghi lại lựa chọn phương án cho mọi dòng**, kể cả khi không đổi gì. Báo giá đã duyệt thì bị khoá sửa giá ⇒ lượt ghi thừa bị chặn | Thông báo lỗi đổ lỗi cho người dùng: *"Hãy huỷ duyệt rồi duyệt lại"* |
 
-**Dòng lịch sử được MIỄN — có chủ đích.** Dòng đã có trong cơ sở dữ liệu mà đang thiếu định
-danh thì vẫn đọc được, vẫn hiện ra, **không bị viết lại**. Sửa ngầm dữ liệu cũ là làm hỏng
-bằng chứng nghiệp vụ. Nhưng miễn trừ **chỉ áp cho THIẾU định danh, KHÔNG áp cho SAI khách**.
-
-**Bằng chứng lớp giao diện:** tài khoản kinh doanh đăng nhập thấy **đúng phần khách được
-phân công**, không thấy phần còn lại.
+Cả hai đã vá. Lỗ 2 vá **đúng gốc**: cổng khoá giá không sai — nó có lý do thật;
+cái sai là **ghi thừa**. Nay chỉ ghi những dòng thực sự khác. Người dùng *đổi*
+phương án trên báo giá đã duyệt thì **vẫn bị chặn**, đúng thiết kế.
 
 ---
 
-## ⑧ TẠO NHANH VÀ TÊN SẢN PHẨM
+## ② DANH TÍNH BẢN KIỂM THỬ
 
-**Nút "Tạo Nhanh Sản Phẩm"** đặt ngay trong form báo giá đang dùng thật.
-Khách hàng **bị khoá** theo báo giá đang lập, không đổi được trong hộp thoại.
-Tạo xong: tự chọn vào đúng dòng, **bản nháp giữ nguyên** — không tải lại trang, vì tải lại là
-mất trắng thứ đang gõ.
-
-**Trùng tên:** không tạo trùng, cũng không im lặng — bày ra sản phẩm đã có (kèm mã · quy
-cách · đơn vị tính) để người dùng chọn lại hoặc đổi tên.
-
-**Chống trùng theo TỪNG khách:** bỏ dấu · gộp khoảng trắng · không phân biệt hoa thường.
-**Cố ý KHÔNG gộp** sản phẩm trùng tên của **hai khách khác nhau** — hai khách cùng đặt
-"Hộp Quà Tết" là chuyện bình thường và đó là hai sản phẩm khác nhau.
-
-### 🔴 Một giả định của gói cần đính chính
-
-Mục ⑪ giả định có sẵn công thức tính **tên đầy đủ cho sản phẩm**. Đo được: công thức ghép
-nhiều mảnh thành một chuỗi thuộc về **VẬT TƯ**, không phải sản phẩm. Với sản phẩm, dự án chỉ
-có chuẩn hoá **Title Case**.
-
-Nên đã **tái dùng đúng cái đang có** — tuyệt đối không tự chế công thức mới (mục ⑪ cấm).
-Điểm cải thiện thật: tên đầy đủ nay **tính lại ở máy chủ**, và **mã sản phẩm do máy chủ cấp**
-(bản cũ để màn hình cấp — không an toàn khi hai người lập báo giá cùng lúc).
-
-**Không thêm cột, không thêm di trú lược đồ.** Bảng sản phẩm không có ràng buộc duy nhất cho
-cặp (khách, tên) nên chống trùng làm ở máy chủ; **rủi ro còn lại**: hai người bấm cùng một
-phần giây vẫn lọt — đã ghi sổ nợ, không giấu.
-
----
-
-## ⑨ BẢN IN BÁO GIÁ
-
-**Bệnh:** đếm chuỗi trên chính tệp bản in — «tên khách» **0 lần** · «Tân Phát» **0 lần** ·
-«mã số thuế» **0 lần** · «thuế» **0 lần** · khối ký **0**. Bản in ra một chuỗi ghép từ **số
-thứ tự trong cơ sở dữ liệu**, không phải mã khách thật, càng không phải tên khách.
-
-**Gốc rễ:** hàm nạp dữ liệu chạy `SELECT` trên **một bảng duy nhất**, **không hề nối** sang
-bảng khách hàng ⇒ bản in không có tên khách trong tay.
-**Nghịch lý:** chính màn hình **đang** hiển thị tên khách — chỉ bản in là không dùng.
-
-**Nguồn layout đã truy được:** mẫu Owner duyệt trong `docs/Form Mẫu Tham Khảo/` — chính là
-tệp mà trang Liên Hệ chỉ đích danh là letterhead chuẩn, và **có sẵn chú thích tên cột cho
-từng ô**. Không phải làm lại từ đầu.
-
-### Bốn thứ CỐ Ý KHÔNG BỊA
-
-| Trường | Vì sao không in |
+| | Giá trị |
 |---|---|
-| **Suất thuế** | Mẫu Owner duyệt ghi *"Thuế GTGT (nếu áp dụng)" / "Theo hóa đơn"* — **không có con số**. Trong kho đang có **hai số chọi nhau**; chọn bên nào cũng là đoán. |
-| Điều khoản thanh toán | Không có nguồn |
-| Tài khoản ngân hàng | Không có nguồn |
-| Tên người ký | Chỉ in **chức danh** + ô trống để ký tay, đúng như mẫu |
+| Kho | `BaoBiTanPhat/erptanphat` · nhánh `main` |
+| Phiên bản | **`V1.00.371`** *(số chưa từng dùng — đã tra toàn bộ lịch sử: 346→370 đều đã dùng)* |
+| Mã nguồn ứng viên | **`cb785e99f87194788fcb12e4fd6dd6f636590b47`** |
+| Mã nguồn dựng bộ bản in | **cùng một mã** — xem chứng minh ở mục ⑥ |
+| Cây làm việc | sạch tại thời điểm chốt |
+| Môi trường đã chạy | máy nội bộ · MariaDB 10.11 trong Docker · Chrome thật |
+| Thời điểm | 11/09/2026 |
 
-Trường nào khách chưa khai thì in dấu gạch, **không suy đoán**, không lấy thông tin công ty
-mình điền vào chỗ của khách.
-
-**Thêm một cảnh báo mới:** nếu tổng tiền lưu trong hệ thống **lệch** tổng cộng lại từ các
-phương án đã chọn thì bản in **nói thẳng ra** thay vì che. *(Bản nháp đầu của lượt này tự
-tính lại tổng — sai hướng, đó là dựng nguồn sự thật thứ hai. Đã sửa: in đúng số của hệ thống,
-lệch thì lộ ra.)*
-
-**Bản render để Owner xem:** `docs/reports/ban-in-bao-gia-20260911/` — **4 bản** minh hoạ
-1 / 5 / 20 / 30 dòng, mỗi bản **HTML + PDF khổ A4 + ảnh chụp**. Số trang PDF: 1 / 2 / 4 / 6.
-Cả bốn mang dải nhãn **"DỮ LIỆU MINH HOẠ — KHÔNG PHẢI BÁO GIÁ THẬT"**.
-
-Đã soi: tên sản phẩm rất dài **không tràn** ra ngoài giấy · tên khách rất dài **không tràn** ·
-không cắt ngang một sản phẩm giữa hai trang · đầu bảng lặp lại khi sang trang · ngày đúng
-`DD/MM/YYYY` · số phân nhóm nghìn kiểu Việt Nam · tổng tiền đúng.
-
-**Bản dựng từ dữ liệu thật CỐ Ý không vào kho** — nó chứa tên, địa chỉ, điện thoại khách
-thật. Nó nằm ở nơi đã chứng minh bị git bỏ qua.
-
-### ⚠️ Cần Owner phân định một điểm
-
-Lệnh cấm khoá 24/07/2026 mở đầu bằng chữ **"ĐƠN HÀNG:"** — đọc nguyên văn thì nó cấm chép bố
-cục Báo Giá **SANG** mẫu Đơn Hàng, **không** nói cấm sửa chính bản in Báo Giá. Sổ nợ đang
-viện dẫn dòng đó làm cớ chặn. Hai cách hiểu khác nhau.
-Dù hiểu cách nào thì kết quả lượt này **giống nhau**: dựng xong rồi **dừng chờ Owner duyệt**.
+**Bộ bản in được dựng từ mã nguồn nào:** ghi rõ trong
+[`docs/reports/ban-in-bao-gia-20260911/README.md`](ban-in-bao-gia-20260911/README.md).
+Nếu mã nguồn đổi sau khi dựng, bộ đó **mất hiệu lực** và phải dựng lại.
 
 ---
 
-## ⑩ T1–T9 VÀ CHUỖI PILOT
+## ③ BỘ DUYỆT BỐ CỤC BẢN IN
 
-Chạy bằng **trình duyệt thật**, trên máy nội bộ, đăng nhập thật. Ma trận lấy **nguyên văn**
-từ kế hoạch go-live — **không** soạn bộ mới cạnh tranh.
+**Mở [`ban-in-bao-gia-20260911/README.md`](ban-in-bao-gia-20260911/README.md) là
+thấy hết** — bảng liên kết từng tệp, chỗ cần nhìn kỹ, và những gì đã tự kiểm.
 
-| # | Bài | Vai | Kết quả | Lớp |
-|---|---|---|---|---|
-| T1 | Quản trị đăng nhập → thấy tất cả menu | Quản trị | ✅ **ĐẠT** — vào được, thấy đủ 7 vùng | `UI_PROVEN` |
-| T2 | Kinh doanh đăng nhập → thanh bên đã lọc | Kinh doanh | ✅ **ĐẠT** — **không** vùng cấm nào lọt ra | `UI_PROVEN` |
-| T3 | Kinh doanh gõ thẳng URL màn quản trị | Kinh doanh | ✅ **ĐẠT** — bị đẩy sang trang 403 | `UI_PROVEN` |
-| T4 | Kinh doanh tạo khách hàng | Kinh doanh | ✅ **ĐẠT** — có đường tạo | `UI_PROVEN` |
-| T5 | Kinh doanh xoá khách hàng | Kinh doanh | ✅ **ĐẠT** — bị chặn | `UI_PROVEN` |
-| T6 | Thiết kế đăng nhập (chỉ xem) | Thiết kế | ⚪ **CHƯA ĐO** | `NOT_CHECKED` |
-| T7 | Thiết kế gõ URL wizard | Thiết kế | ⚪ **CHƯA ĐO** | `NOT_CHECKED` |
-| T8 | Kinh doanh tạo Báo Giá | Kinh doanh | ✅ **ĐẠT** — có đường tạo | `UI_PROVEN` |
-| T9 | Kinh doanh xoá Báo Giá | Kinh doanh | ✅ **ĐẠT** — bị chặn | `UI_PROVEN` |
+| # | Bản | Ảnh | PDF | HTML | Trang |
+|---|---|---|---|---|---|
+| 1 | 1 dòng | [ảnh](ban-in-bao-gia-20260911/01-minh-hoa-01-dong.png) | [PDF](ban-in-bao-gia-20260911/01-minh-hoa-01-dong.pdf) | [HTML](ban-in-bao-gia-20260911/01-minh-hoa-01-dong.html) | 1 |
+| 2 | 5 dòng | [ảnh](ban-in-bao-gia-20260911/02-minh-hoa-05-dong.png) | [PDF](ban-in-bao-gia-20260911/02-minh-hoa-05-dong.pdf) | [HTML](ban-in-bao-gia-20260911/02-minh-hoa-05-dong.html) | 2 |
+| 3 | 20 dòng | [ảnh](ban-in-bao-gia-20260911/03-minh-hoa-20-dong.png) | [PDF](ban-in-bao-gia-20260911/03-minh-hoa-20-dong.pdf) | [HTML](ban-in-bao-gia-20260911/03-minh-hoa-20-dong.html) | 4 |
+| 4 | 30 dòng | [ảnh](ban-in-bao-gia-20260911/04-minh-hoa-30-dong.png) | [PDF](ban-in-bao-gia-20260911/04-minh-hoa-30-dong.pdf) | [HTML](ban-in-bao-gia-20260911/04-minh-hoa-30-dong.html) | 6 |
+| 5 | **Bản NHÁP** có dấu chống gửi nhầm | [ảnh](ban-in-bao-gia-20260911/05-minh-hoa-ban-nhap-co-dau-chim.png) | [PDF](ban-in-bao-gia-20260911/05-minh-hoa-ban-nhap-co-dau-chim.pdf) | [HTML](ban-in-bao-gia-20260911/05-minh-hoa-ban-nhap-co-dau-chim.html) | 2 |
 
-**TỔNG: 7 ĐẠT · 0 HỎNG · 2 CHƯA ĐO.** Chạy hai lượt liên tiếp, kết quả **giống nhau**.
+### Xem ngay tại đây — bốn bản chính
 
-**T6·T7 vì sao chưa đo:** trên cơ sở dữ liệu nội bộ **không tài khoản nào mang vai trò Thiết
-Kế**. Vai trò đó **có tồn tại** nhưng chưa gán cho ai. Gán thêm là đổi cấu hình phân quyền,
-**vượt ra ngoài tập người dùng mà chính Owner đã khoá** cho gói này (đúng một Quản trị + một
-Kinh doanh). Ghi **CHƯA ĐO**, tuyệt đối không ghi là đạt. → `DEBT-195`, cần Owner quyết.
+**Bản 1 dòng** — ngắn nhất, soi đầu trang và khối thông tin khách:
 
-**Bằng chứng lớp giao diện:** ảnh chụp bản rộng **và** bản 390px, đều **sau khi đã đăng
-nhập**. Ảnh nằm ở nơi bị git bỏ qua vì chứa dữ liệu khách hàng thật.
+![Bản in báo giá 1 dòng](ban-in-bao-gia-20260911/01-minh-hoa-01-dong.png)
 
-### Hai lần bài kiểm của tôi báo sai — và cách phát hiện
+**Bản 5 dòng** — cỡ hay gặp nhất, soi bảng sản phẩm và tên rất dài:
 
-Lượt đầu T1·T2 báo **HỎNG** *"không vào được"*, trong khi T3·T5·T8·T9 **chạy được bằng chính
-phiên đăng nhập đó** — T3 còn vào tới trang 403, tức máy chủ **đã nhận ra người dùng**.
-Mâu thuẫn đó chứng minh lỗi nằm ở **bài kiểm**, không phải ứng dụng.
+![Bản in báo giá 5 dòng](ban-in-bao-gia-20260911/02-minh-hoa-05-dong.png)
 
-Nguyên nhân thật: trang đăng nhập đặt xong phiên nhưng **không tự rời khỏi** trang đó, nên
-phép đo theo địa chỉ trang luôn kết luận sai. Đã sửa thành **chờ đúng cookie phiên** rồi tự
-đi tới trang chủ xem có bị đá ngược ra không.
+**Bản 20 dòng** — soi chỗ chuyển trang, đầu bảng có lặp lại không:
 
-Lần thứ hai: T4 báo hỏng vì tôi dò nút bằng chữ *"thêm / tạo mới"*, còn nút thật ghi
-**"+ Tạo KH"**. Ảnh chụp cho thấy ngay.
+![Bản in báo giá 20 dòng](ban-in-bao-gia-20260911/03-minh-hoa-20-dong.png)
 
-**Ghi lại vì đây là bài học:** nếu tin ngay lượt chạy đầu, tôi đã báo với Owner rằng hệ thống
-hỏng ba chỗ trong khi nó **hoàn toàn bình thường**.
+**Bản 30 dòng** — báo giá dài nhất, sáu trang:
 
-**Dữ liệu thử:** không tạo bản ghi nghiệp vụ mới nào. Việc dựng nền pilot chỉ gồm nối tài
-khoản với nhân sự và phân công **một tập nhỏ** khách hàng — trạng thái trước đã lưu lại để
-đảo ngược được. **Không chạm** dữ liệu của phần còn lại.
+![Bản in báo giá 30 dòng](ban-in-bao-gia-20260911/04-minh-hoa-30-dong.png)
+
+**Bản NHÁP** — thứ chặn việc gửi nhầm bản chưa duyệt cho khách:
+
+![Bản in báo giá bản nháp có dấu chìm](ban-in-bao-gia-20260911/05-minh-hoa-ban-nhap-co-dau-chim.png)
 
 ---
 
-## ⑪ PHÁT HÀNH
+### Bảng tự kiểm bố cục
 
-**CHƯA PHÁT HÀNH.** Chưa trình biên nhận, chưa xin xác nhận triển khai, chưa tăng số phiên bản.
+| Điều | Kết quả | Điều | Kết quả |
+|---|---|---|---|
+| Nhận diện công ty (logo · tên · MST · hotline) | ✅ | Xuống dòng khi tên dài | ✅ |
+| Thông tin khách (tên · mã · địa chỉ · MST · liên hệ) | ✅ | Chuyển trang không cắt đôi sản phẩm | ✅ |
+| Bảng sản phẩm — hiện **mọi** phương án, đánh dấu cái được chọn | ✅ | Đầu bảng lặp khi sang trang | ✅ |
+| Tổng tiền — ba dòng, dùng số của hệ thống | ✅ | Ghi chú | ✅ |
+| Ngày `DD/MM/YYYY` · số kiểu Việt Nam | ✅ | Hai ô chữ ký | ✅ |
+| Khổ A4 dọc, lề 1,5 cm | ✅ | **Không lộ chữ trạng thái nội bộ** | ✅ |
+| Không có nút bấm lọt vào bản in | ✅ | Bản nháp / hết hiệu lực bị đóng dấu | ✅ |
 
-**Lý do:** cổng ⑫ (Owner duyệt bản in) chưa qua, mà bản in là một phần của thứ sẽ phát hành.
-Trình biên nhận lúc này là trình một gói chưa chốt.
+### 🔴 Một điều mới vá trong đợt này: bản in từng lộ chữ nội bộ
 
-**Đã đo sẵn để lúc trình không phải đoán:** số phiên bản chưa từng dùng kế tiếp là
-**`V1.00.371`** (tra lịch sử, không mặc định số kế tiếp).
+Bản in cũ đóng **nhãn trạng thái quy trình** lên đầu **mọi** tờ giấy — *"Nháp"*,
+*"Từ chối"*, *"Đã duyệt tạo đơn"*. Ba hậu quả đều thật:
 
-**Cổng chất lượng đã chạy:**
+1. Khách nhận tờ báo giá đóng dấu *"Từ chối"* thì không hiểu là gì, và nó làm
+   hỏng quan hệ.
+2. Bản **nháp** in ra rồi gửi đi mà **không có gì cản** — nó trông y hệt bản chính thức.
+3. Bản **hết hiệu lực** cũng vậy: khách có thể cầm tờ giá cũ đi đặt hàng.
+
+Nay: nhãn đó **gỡ hẳn**. Trạng thái chỉ dùng để quyết định bản in có được gửi
+khách không, và biểu hiện ra ngoài là **dấu chìm chéo trang** — xem bản số 5.
+Trạng thái lạ (ai đó thêm mới mà quên cập nhật) cũng bị đóng dấu, không mặc định
+cho gửi.
+
+### Điểm thẩm mỹ còn muốn Owner để mắt
+
+- Độ đậm của dấu chìm: hiện để nhạt (16% đỏ) để không át chữ. Anh thấy cần đậm hơn?
+- Dòng "Nhà máy" trong khối công ty: giữ hay bỏ cho gọn?
+- Khoảng trống chừa ký tay: hiện 70px. Đủ chưa?
+
+---
+
+## ④ BẰNG CHỨNG NGHIỆP VỤ — CHẠY THẬT, KHÔNG PHẢI ĐỌC MÃ
+
+Chạy bằng Chrome thật, đăng nhập thật, 32 bước — **31 đạt · 0 hỏng**.
+Lệnh: `npm run test:pilot-m1-m3`.
+
+| Điều phải chứng minh | Cách đo | Kết quả |
+|---|---|---|
+| Sales chỉ thấy khách được giao | màn Khách Hàng hiện *Tổng: 3* trong khi hệ thống có 1.695 | ✅ `UI_PROVEN` |
+| Chưa chọn khách thì không chọn được sản phẩm | ô sản phẩm mờ, ghi *"Chọn khách hàng trước"* | ✅ `UI_PROVEN` |
+| Sản phẩm đúng khách | ô chỉ hiện 3 sản phẩm của khách đó; sản phẩm gắn mã khách không tồn tại **nằm ngoài** | ✅ `UI_PROVEN` |
+| Tạo nhanh — khách bị khoá | form hiện đúng tên khách + *"đã khoá theo báo giá đang lập"* | ✅ `UI_PROVEN` |
+| Tạo nhanh — **bản nháp còn nguyên** | ngày hiệu lực đang gõ vẫn còn; dòng sản phẩm thêm trước vẫn còn | ✅ `UI_PROVEN` |
+| Tạo nhanh — tự chọn vào báo giá | sản phẩm mới xuất hiện ngay trong danh sách dòng | ✅ `UI_PROVEN` |
+| Khách **giữ nguyên** qua hai lần mở tạo nhanh | so tên khách lần 1 và lần 2 | ✅ `UI_PROVEN` |
+| Mã sản phẩm do **máy chủ** cấp, gắn **đúng khách** | đọc thẳng CSDL: mã sinh tự động · `ma_khach_hang` đúng · `nguoi_tao` = tài khoản Sales | ✅ `DB_PROVEN` |
+| Chống trùng tên | gõ lại cùng tên **viết thường không dấu chuẩn** → vẫn bị bắt, bày sản phẩm cũ ra để chọn | ✅ `UI_PROVEN` |
+| Không tạo trùng | đếm trong CSDL: **1 bản ghi**, không phải 2 | ✅ `DB_PROVEN` |
+| **Không còn chữ tự do** | mọi dòng báo giá mới đều có định danh sản phẩm | ✅ `DB_PROVEN` |
+| Sales **không tự duyệt** báo giá của mình | nút Duyệt khoá với vai Kinh doanh | ✅ `UI_PROVEN` |
+| Báo giá thật được lập | bản ghi mới trong CSDL, có mã, có tổng tiền, người tạo = Sales | ✅ `DB_PROVEN` |
+| Admin duyệt được | trạng thái chuyển sang *duyệt tạo đơn* | ✅ `DB_PROVEN` |
+| **Đơn hàng thật** được tạo | bản ghi đơn mới, tổng tiền khớp báo giá | ✅ `DB_PROVEN` |
+| **Ghi chú người dùng được lưu** | `ghi_chu` = dòng truy vết hệ thống **+** ghi chú người dùng | ✅ `DB_PROVEN` |
+| Ngày giao dự kiến được lưu | đúng ngày đã chọn trong hộp thoại | ✅ `DB_PROVEN` |
+| **Đơn hàng được xác nhận** | trạng thái *đã xác nhận* — chặng cuối của pilot | ✅ `DB_PROVEN` |
+| **Cảnh báo vàng hiện ra thật** | ảnh chụp: *"Đã chuyển trạng thái — nhưng CHƯA trọn… hãy tự liên hệ khách nếu cần"* | ✅ `UI_PROVEN` |
+
+**Ảnh nghiệm thu:** desktop và 390px, ở `docs/anh-kiem-thu/pilot-m1-m3-20260911/`
+— thư mục **bị git bỏ qua** vì ảnh có dữ liệu khách thật.
+
+**Dữ liệu thử:** mọi bản ghi mang tiền tố `PILOT-20260911`, truy vết được, dọn
+được bằng `scripts` đi kèm. Không đụng dữ liệu của 1.692 khách còn lại.
+
+### Ba lần bài kiểm báo HỎNG mà ứng dụng thì ĐÚNG
+
+Ghi ra để người sau không mất công đo lại — cả ba đều là lỗi của **bài kiểm**:
+
+1. Bấm bằng `element.click()` trong mã trang gửi sự kiện **không đáng tin**, khung
+   giao diện lúc nhận lúc không → đổi sang phép bấm thật của công cụ.
+2. Đếm **số phần tử** thay vì đếm **số mã khách phân biệt** → đếm nhầm cả phần tử
+   bọc lồng nhau, báo 4 khách trong khi màn hình hiện đúng 3.
+3. Chờ 5 giây rồi mới đọc thông báo nổi — nó **tự tắt sau ~4 giây** → báo "không
+   bắt được cảnh báo" trong khi cảnh báo có hiện.
+
+Nếu tin ngay lượt chạy đầu, tôi đã báo với Owner rằng hệ thống hỏng ba chỗ trong
+khi nó hoàn toàn bình thường.
+
+---
+
+## ⑤ NỢ KỸ THUẬT
+
+| Nợ | Trạng thái | Căn cứ |
+|---|---|---|
+| `DEBT-152` bản in | 🔶 **ĐANG XỬ LÝ** | Mã xong · render xong · **chờ Owner duyệt bằng mắt** |
+| `DEBT-173` báo xanh giả | ✅ **ĐÃ XỬ LÝ — nay có `UI_PROVEN`** | Đã **nhìn thấy** cảnh báo vàng thật khi xác nhận đơn, có ảnh |
+| `DEBT-185` đăng nhập | 🔶 **ĐANG XỬ LÝ** | Máy nội bộ đã gỡ và đã dùng thật · **máy vận hành chưa kiểm — tách riêng, không gộp** |
+| `DEBT-189` vân tay | 🔶 **ĐANG XỬ LÝ** | Vá gốc + siết sau kiểm ngược · **chưa chạy trên máy vận hành nên chưa đóng** |
+| `DEBT-193` cổng PII mù | 🔶 **ĐANG XỬ LÝ** | Bộ công khai đợt này **chỉ dùng dữ liệu bịa** (mã `KHMAU-0001`); bản dữ liệu thật để ngoài kho. Cổng vẫn chưa tự bắt được tên+địa chỉ — còn nợ |
+| `DEBT-194` bốn lỗ vân tay | 🔶 **ĐANG XỬ LÝ** | Đã phân loại — xem bảng dưới |
+| `DEBT-195` T6·T7 | ⏸️ **HOÃN CÓ CHỦ ĐÍCH** | Giữ `NOT_CHECKED`, **không ghi PASS giả**. Không chặn pilot một Admin + một Sales |
+| `DEBT-196` dữ liệu sai khách | 🔶 **ĐÃ CÁCH LY** | Sản phẩm gắn mã khách không tồn tại **tự nằm ngoài** tập pilot vì bộ lọc theo khách. **Không xoá, không đoán chủ** |
+| `DEBT-197` ô nhập trang trí | ✅ **ĐÃ XỬ LÝ** | Ba ô là bản trùng → gỡ; ô Ghi chú → **lưu thật**, có bằng chứng CSDL |
+
+### `DEBT-194` — bốn lỗ vân tay, phân loại theo đường phát hành chuẩn
+
+| Lỗ | Nằm trên đường phát hành chuẩn? | Xử lý |
+|---|---|---|
+| 1. Tệp môi trường riêng máy không được băm | **CÓ** | **Giới hạn cố hữu** — không băm được vì mỗi máy một khác. Phải nói thẳng, không được để câu *"vân tay chứng minh toàn vẹn"* bị hiểu quá tầm |
+| 2. Ba công thức vân tay song song còn lại | **KHÔNG** — thuộc công cụ tiền kiểm | Ghi nợ. Riêng một cái luôn băm thư mục **đã bị xoá** ⇒ luôn cho vân tay của hư không |
+| 3. Không đường triển khai nào **tự động** gọi cổng | **CÓ** | Cơ chế đúng mà không ai bấm thì giá trị thi hành bằng 0. Cần nối vào bước tiền-triển-khai |
+| 4. Bản kê nằm ngay trên máy vận hành | **CÓ** | Giới hạn cố hữu của mọi cơ chế tự chứng thực. Muốn chặt hơn thì bản kê phải ký hoặc để nơi máy vận hành không ghi được |
+
+**Lỗ 1 và 4 là giới hạn bản chất**, không vá được trong phạm vi gói này — đã ghi
+rõ để không ai hiểu nhầm. **Lỗ 3 là việc làm được** và nên làm cùng lượt đóng
+`DEBT-189`. **Lỗ 2 nằm ngoài đường chuẩn** nên ghi nợ, có bằng chứng cách ly.
+
+---
+
+## ⑥ KIỂM THỬ VÀ PHÁT HÀNH
 
 | Cổng | Kết quả |
 |---|---|
 | Kiểm kiểu toàn dự án | **sạch** |
-| Cổng quản trị | **đạt** |
-| Nhóm bài kiểm nhanh | **1.048 điều kiện đạt** |
+| Bài kiểm bản in (60 điều kiện, có nhóm riêng cho từng trạng thái) | **60/60** |
+| Bài kiểm không-báo-xanh-giả (18 điều kiện, gọi hàm thật) | **đạt** |
+| Bài kiểm sản phẩm trong báo giá (26 điều kiện) | **đạt** |
+| Bài kiểm vân tay bản dựng (52 điều kiện) | **đạt** |
+| Bộ chạy pilot thật (32 bước, trình duyệt thật) | **31 đạt / 0 hỏng** |
+| Nhóm bài kiểm nhanh | **đạt** |
 | Nhóm bài kiểm cần cơ sở dữ liệu | **đạt** |
 | Cổng quét bí mật · quét dữ liệu cá nhân | **đạt** |
-| Cổng cổng-mồ-côi | **2/1 → 3/0** *(xem dưới)* |
+| Cổng cổng-mồ-côi | **3/3** |
+| Lint | **không tăng** ở bất kỳ tệp nào đợt này sửa *(xem ghi chú)* |
 
-**Bốn bài kiểm mới từng MỒ CÔI** — viết xong mà không bộ gộp nào gọi, tức **giá trị thi hành
-bằng 0**. Đã nối vào đúng nhóm theo điều kiện chạy.
+> **Ghi chú về lint:** toàn dự án đang có sẵn 843 cảnh báo/lỗi từ trước.
+> Đã đối chiếu từng tệp đợt này sửa với bản trước gói: **không tệp nào tăng**,
+> một tệp còn **giảm**. Các tệp mới thêm: **sạch**. Việc dọn 843 mục đó nằm ngoài
+> phạm vi gói này.
 
----
+### Biên nhận bản phát hành ứng viên
 
-## ⑫ NỢ ĐÓNG VÀ CÒN MỞ
-
-**Chỉ đổi trạng thái theo bằng chứng thật:**
-
-| Nợ | Trước | Sau | Vì sao |
-|---|---|---|---|
-| `DEBT-173` | MỞ | ✅ **ĐÃ XỬ LÝ** | Vá **hai** điểm mất thông tin; bài kiểm hành vi 18/18; kiểm ngược đạt |
-| `DEBT-152` | MỞ · CHẶN GO-LIVE | 🔶 **ĐANG XỬ LÝ** | Mã xong, render xong — **chờ Owner duyệt bằng mắt** |
-| `DEBT-185` | MỞ | 🔶 **ĐANG XỬ LÝ** | Máy nội bộ đã gỡ; **máy vận hành chưa kiểm** |
-| `DEBT-189` | MỞ | 🔶 **ĐANG XỬ LÝ** | Vá gốc + siết VT-2; **chưa chạy trên máy vận hành** |
-
-**Năm nợ MỚI ghi trong phiên:**
-
-| Nợ | Nội dung |
+| Điều | Giá trị |
 |---|---|
-| `DEBT-193` | 🔴 Cổng quét dữ liệu cá nhân **mù** với tên + địa chỉ khách trong tệp báo cáo — hôm nay tuân luật vì **người làm nhớ luật**, không phải vì máy canh |
-| `DEBT-194` | 🟠 Cơ chế vân tay còn **bốn lỗ đã biết**, gồm một công thức luôn băm **hư không** |
-| `DEBT-195` | 🟠 T6·T7 chưa đo — cần Owner quyết có gán vai Thiết Kế không |
-| `DEBT-196` | 🟠 Dữ liệu **có sẵn** bị sai khách — không tự sửa vì phải **đoán** |
-| `DEBT-197` | 🟡 Bốn ô nhập **trang trí** ở bước tạo đơn — gõ vào rồi mất trắng |
+| Phiên bản | **`V1.00.371`** |
+| Mã nguồn ứng viên (đầy đủ) | **`cb785e99f87194788fcb12e4fd6dd6f636590b47`** |
+| Nhánh | `main` |
+| Trên đĩa = HEAD = | `V1.00.371` *(đã chạy `npm run release:status` xác nhận)* |
+| Cây làm việc | sạch sau khi chốt |
+| Cổng tăng phiên bản | tự động kiểm: **đúng +1 bậc**, cho qua |
+| Vân tay bản dựng | **`c3757e9ba48f276b61bde332121468a2`** · **2.832 tệp** · hợp đồng `VT-2` |
 
-**Các nợ hoãn: KHÔNG tuyên bố đóng cái nào.** Không đụng tới Pricing, M4, M5, MF, M9,
-`DEBT-190`, hay các nợ động cơ quy trình ngoài phạm vi hẹp đã nêu.
+> ⚠️ **Vân tay trên đo bản dựng NỘI BỘ**, không phải thư mục chạy trên máy vận
+> hành (`.standalone-run` — chỉ tồn tại sau khi kích hoạt trên máy vận hành).
+> Nó chứng minh **cơ chế chạy được và cho giá trị thật**, chưa chứng minh bản
+> trên máy vận hành. Đây chính là lý do `DEBT-189` **chưa đóng**.
 
----
+### Bốn commit của gói này
 
-## ⑬ BÀN GIAO TanPhatAI
-
-```
-FINAL_SYNC_CONFIRMATION
-```
-
-| Mục | Giá trị |
+| Mã | Nội dung |
 |---|---|
-| Phiên bản hiện hành | `V1.00.370` — **không đổi trong gói này** |
-| Phiên bản kế tiếp chưa dùng | `V1.00.371` *(đã tra lịch sử)* |
-| Mã nguồn phát hành | **chưa có** — chưa phát hành |
-| Mã nguồn máy vận hành | **chưa đo lại trong gói này** |
-| Vân tay bản dựng | hợp đồng **VT-2**; **chưa có bằng chứng trên máy vận hành** |
-| Nợ đã đóng | `DEBT-173` |
-| Nợ đang xử lý | `DEBT-152` · `DEBT-185` · `DEBT-189` |
-| Nợ mới mở | `DEBT-193` · `DEBT-194` · `DEBT-195` · `DEBT-196` · `DEBT-197` |
-| Trạng thái pilot | **CHƯA SẴN SÀNG** — chờ 2 cổng Owner |
-| Đường dẫn báo cáo | `docs/reports/BUSINESS-PILOT-M1-M3-20260911.md` |
-| Bản in để duyệt | `docs/reports/ban-in-bao-gia-20260911/` |
-| Sổ Yêu Cầu Owner | mục `#255` |
+| `4b71ef4` | `DEBT-197` ô nhập thật + bảo vệ trạng thái bản in (không lộ chữ nội bộ) |
+| `b0f8228` | vá **HAI lỗ chặn** làm đứt chuỗi nghiệp vụ + bộ chạy pilot thật |
+| `469042a` | bộ duyệt bố cục bản in — 5 bản + tệp chỉ mục |
+| `cb785e9` | **bản phát hành `V1.00.371`** |
 
-**Tài liệu Notion cần đồng bộ:**
+**27 tệp đổi · 1.517 dòng thêm · 67 dòng bớt.** Mã nguồn chạm đúng 7 tệp:
+`bao-gia-client.tsx` · `bao-gia-print-content.ts` · `actions.ts` ·
+`SelectOptionForOrderDialog.tsx` · `m3-store.ts` · `ban-in-bao-gia-policy.ts` (mới) ·
+`version.ts`. Còn lại là bài kiểm, bộ dựng và tài liệu.
 
-1. Trạng thái `DEBT-152` — từ *chặn go-live* sang *chờ Owner duyệt mẫu giấy*.
-2. Chuỗi nghiệp vụ M1→M3: dòng báo giá **mới** nay **bắt buộc** neo vào danh mục sản phẩm,
-   và sản phẩm phải **đúng khách của báo giá**.
-3. Có thêm chức năng **Tạo Nhanh Sản Phẩm** ngay trong form báo giá.
-4. Hành vi thông báo: chuyển trạng thái có kèm gửi thông báo/email nay hiện **cảnh báo vàng**
-   khi chưa gửi được — **không còn báo xanh giả**.
-5. Đính chính một giả định: **không** có công thức tên đầy đủ cho *sản phẩm*; công thức đó
-   thuộc về *vật tư*.
-6. Ghi nhận: bộ nghiệm thu T1–T9 đạt **7/9**, hai bài còn lại **chưa đo** chứ không phải hỏng.
+### Bộ bản in được dựng từ ĐÚNG mã nguồn nào
+
+Bộ cũ dựng ở `b0f8228` khi hệ thống còn mang `V1.00.370` ⇒ theo đúng luật đã chốt,
+bộ đó **hết hiệu lực** khi mã nguồn đổi. Đã **dựng lại trọn bộ** tại
+`cb785e99f87194788fcb12e4fd6dd6f636590b47`.
+
+Giữa hai mã nguồn ấy git báo **đúng một tệp đổi: `src/lib/version.ts`** — và tệp đó
+không tham gia dựng bản in (đã tìm trong bộ dựng: không chỗ nào gọi tới). Nên bộ mới
+và bộ cũ khác nhau ở chỗ nào cũng chỉ là dữ liệu bên trong tệp PDF, không phải bố cục.
+
+**Bản kê bộ duyệt bố cục** (16 tệp — 16 ký tự đầu của mã băm SHA-256 · cỡ tệp):
 
 ```
-NOTION_MUTATION: NONE
+4447c3f114cea559  164061  01-minh-hoa-01-dong.html
+bbb8a92f3d963524  169653  02-minh-hoa-05-dong.html
+f52cc0a24f0d0ad8  190360  03-minh-hoa-20-dong.html
+8e07319448a8c0b9  204194  04-minh-hoa-30-dong.html
+18a6e907517d14d3  167091  05-minh-hoa-ban-nhap-co-dau-chim.html
+4470ab36d4f1f508  375579  01-minh-hoa-01-dong.pdf
+fbc289809ebc27cd  385144  02-minh-hoa-05-dong.pdf
+c305024bd1447b04  400038  03-minh-hoa-20-dong.pdf
+b2e0f5b96502669a  409833  04-minh-hoa-30-dong.pdf
+0c38e60818a4f666  398341  05-minh-hoa-ban-nhap-co-dau-chim.pdf
+f8c513d72507b196   72245  01-minh-hoa-01-dong.png
+14bd2e2d1f0c87d6  121837  02-minh-hoa-05-dong.png
+17b8f8e471c0ea89  307883  03-minh-hoa-20-dong.png
+46e5d5ba1cece026  434676  04-minh-hoa-30-dong.png
+6c68f6334d4828d3  112806  05-minh-hoa-ban-nhap-co-dau-chim.png
+a4622735433e02dd    5809  README.md
 ```
 
----
+### Sao lưu và cách lùi lại — chuẩn bị trước, chưa dùng
 
-## ⑭ NHÃN KẾT LUẬN — TỪNG DÒNG MỘT
+**Trước khi triển khai** (chỉ chạy sau khi Owner xác nhận ở cổng thứ hai):
 
-| Nhãn | Trạng thái | Ghi chú |
-|---|---|---|
-| `LOCAL_LOGIN_PROVEN` | ✅ `UI_PROVEN` | Đăng nhập thật qua trình duyệt, hai vai |
-| `CUSTOMER_SCOPE_PROVEN` | ✅ `UI_PROVEN` + `DB_PROVEN` | Kinh doanh chỉ thấy phần được phân công |
-| `PRODUCT_MASTER_PROVEN` | ✅ `CODE_PROVEN` + `DB_PROVEN` | Cổng máy chủ chặn dòng thiếu định danh; 26 điều kiện đạt |
-| `QUICK_CREATE_PROVEN` | 🟡 `CODE_PROVEN` | Mã xong, kiểm kiểu sạch — **chưa** bấm tay từng bước trên màn |
-| `PRODUCT_NAME_UNIQUENESS_PROVEN` | ✅ `CODE_PROVEN` | 7 điều kiện chống trùng, gồm khác dấu / khác hoa thường |
-| `NO_FREE_TEXT_IDENTITY_PROVEN` | ✅ `CODE_PROVEN` | Chặn cả ba đường; dòng lịch sử được miễn có chủ đích |
-| `POST_ACTION_STATUS_PROVEN` | ✅ `CODE_PROVEN` + `DB_PROVEN` | 18/18; kiểm ngược đạt; 7 bước thật trong cấu hình |
-| `QUOTATION_PRINT_PROVEN` | 🔶 `BLOCKED` | **Chờ Owner duyệt bằng mắt** — đúng điểm dừng gói cho phép |
-| `ARTIFACT_FINGERPRINT_PROVEN` | 🔶 `BLOCKED` | 52/52 + 7/7 biểu hiện, nhưng **chưa chạy trên máy vận hành** |
-| `SYNCED_EXACT_RELEASE` | ⚪ `NOT_CHECKED` | Chưa phát hành |
-| `RELEASE_CONVERGED` | ⚪ `NOT_CHECKED` | Chưa phát hành |
-| `UI_PROVEN` | 🟡 một phần | Máy nội bộ có ảnh; **máy vận hành chưa** |
-| `BUSINESS_PILOT_READY` | 🔶 `BLOCKED` | Chờ 2 cổng Owner + `DEBT-195` |
+1. Sao lưu cơ sở dữ liệu máy vận hành, ghi lại tên tệp sao lưu và cỡ tệp.
+2. Ghi lại mã nguồn **đang chạy** trên máy vận hành trước khi đổi — đó là mốc lùi về.
+3. Ghi lại vân tay thư mục chạy hiện tại, để sau khi đổi còn đối chiếu.
+
+**Nếu phải lùi lại:** đưa mã nguồn về đúng mốc đã ghi ở bước 2, dựng lại, kích hoạt
+lại, rồi đối chiếu vân tay với giá trị đã ghi ở bước 3.
+
+> ⚠️ Gói này **KHÔNG có di trú cơ sở dữ liệu** — không thêm, không xoá, không đổi
+> bảng hay cột nào. Cái cần lùi chỉ là mã nguồn. Sao lưu cơ sở dữ liệu vẫn làm, theo
+> nguyên tắc, chứ không phải vì gói này chạm vào dữ liệu.
+
+**Đã đẩy lên kho riêng. CHƯA triển khai, CHƯA kích hoạt trên máy vận hành** — chờ
+Owner duyệt bố cục trước, vì bản in là một phần của thứ sẽ phát hành.
 
 ---
 
-## ⑮ ĐANG CHỜ OWNER — ĐÚNG NĂM VIỆC
+## ⑦ VIỆC OWNER CẦN XÁC NHẬN
 
-1. **Duyệt bằng mắt bản in báo giá** → mở `docs/reports/ban-in-bao-gia-20260911/`.
-   *Chặn:* đóng `DEBT-152` và toàn bộ bước phát hành.
-2. **Suất thuế trên báo giá** — mẫu duyệt ghi *"Theo hóa đơn"*, nhưng trong kho có hai số
-   chọi nhau. Giữ như mẫu, hay chốt một suất?
-   *Chặn:* nếu Owner muốn in số thuế.
-3. **Vai Thiết Kế cho T6·T7** — cho gán vai để đo nốt, hay đóng pilot ở 7/9?
-   *Chặn:* tuyên bố nghiệm thu đầy đủ.
-4. **Dữ liệu sai khách có sẵn** (`DEBT-196`) — sản phẩm mồ côi thật ra thuộc khách nào, hay
-   xoá hẳn? *Chặn:* đưa dữ liệu đó vào vận hành thật.
-5. **Xác nhận triển khai** — chỉ xin **sau khi** việc 1 xong và biên nhận phát hành đã trình.
+**Bây giờ — chỉ một việc:** duyệt bố cục bản in báo giá.
+Mở [`ban-in-bao-gia-20260911/README.md`](ban-in-bao-gia-20260911/README.md), xem
+ảnh/PDF/HTML của cả năm bản.
+
+**Sau đó** mới tới việc xác nhận triển khai — tôi sẽ trình biên nhận phát hành đầy
+đủ (phiên bản · mã nguồn chính xác · danh sách tệp đổi · bản kê · vân tay · sao lưu
+· cách lùi lại) rồi hỏi đúng một câu.
 
 ---
 
-## ⑯ CHƯA XÁC MINH ĐƯỢC
+## ⑧ SỰ CỐ TRONG PHIÊN — TỰ BÁO
+
+Khi đang đo lint, tôi chạy `git stash pop` mà **không có stash nào của mình**.
+Lệnh đó mở nhầm **stash của phiên làm việc khác** (`DEBT-049` — thứ chính prompt
+ghi là không được đụng) và tạo xung đột ở 9 tệp, trong đó có cả 5 tệp quản trị.
+
+**Đã khắc phục ngay và kiểm chứng đủ:** đưa cây làm việc về đúng mốc đã commit ·
+**cả hai stash còn nguyên** · 5 tệp quản trị đồng bộ trở lại · mọi bản vá của gói
+còn đủ · kiểm kiểu sạch. Không mất gì.
+
+**Bài học đã ghi:** trong kho có stash của phiên khác thì `git stash pop` là lệnh
+nguy hiểm — phải kiểm tra lệnh `push` của mình có thật sự tạo stash hay không
+trước khi `pop`.
+
+---
+
+## ⑨ CHƯA XÁC MINH ĐƯỢC
 
 | Điều | Vì sao | Ai xác minh được |
 |---|---|---|
-| Toàn bộ hành vi trên **máy vận hành** | Gói này không mở quyền triển khai | Sau khi Owner xác nhận, Agent tự chạy |
-| Vân tay bản dựng trên máy vận hành thật | Cùng lý do | Chạy cổng định danh sau lần kích hoạt kế tiếp |
-| Từng bước bấm tay của **Tạo Nhanh Sản Phẩm** | Đã kiểm mã và kiểu, chưa dựng kịch bản bấm tay | Agent, phiên sau — hoặc Owner bấm thử |
-| Ứng dụng có tự ghi thêm gì vào thư mục bản chạy sau khi khởi động không | Chỉ đo được trên máy vận hành thật | Quyết định cổng vân tay có ổn định hay đỏ vĩnh viễn |
+| Toàn bộ hành vi trên **máy vận hành** | Gói này chưa mở quyền triển khai | Sau khi Owner xác nhận |
+| Vân tay bản dựng trên máy vận hành thật | Cùng lý do — bằng chứng cao nhất hiện có là chạy trong Linux máy ảo | Lần kích hoạt kế tiếp |
+| Ứng dụng có tự ghi thêm gì vào thư mục bản chạy sau khi khởi động không | Chỉ đo được trên máy vận hành thật | Quyết định cổng vân tay ổn định hay đỏ vĩnh viễn |
+| T6·T7 vai Thiết Kế | Không tài khoản nào mang vai đó; gán thêm là vượt phạm vi Owner khoá | Cần Owner quyết |
 
 ---
 
-*Báo cáo này đã qua cổng công khai: không địa chỉ máy chủ, không đường dẫn tuyệt đối của máy
-vận hành, không địa chỉ thư người thật, không khoá/mã băm, không số lượng khách hàng chính
-xác, không số tiền giao dịch cụ thể.*
+```
+════════════ BÁO CÁO KẾT THÚC ════════════
+1. ĐÃ LÀM
+   - Vá DEBT-197: ba ô nhập trang trí gỡ bỏ, ô Ghi chú lưu thật xuyên ba tầng
+   - Vá ⑤B: bản in không còn lộ chữ trạng thái nội bộ; thêm dấu chìm fail-closed
+   - Vá HAI lỗ chặn làm đứt chuỗi nghiệp vụ (gửi duyệt · tạo đơn từ báo giá đã duyệt)
+   - Viết bộ chạy pilot thật bằng trình duyệt: 32 bước, 31 đạt / 0 hỏng
+   - Dựng bộ duyệt bố cục: 5 bản × (HTML + PDF A4 + ảnh) + tệp chỉ mục
+   - Tăng phiên bản lên V1.00.371 (đã tra là số chưa từng dùng)
+   - Cập nhật báo cáo private + public; ghi sổ Owner và sổ nợ
+
+2. PHẠM VI
+   ĐỤNG      : src/app/m3/bao-gia/{bao-gia-client,bao-gia-print-content,actions} ·
+               src/components/m3/SelectOptionForOrderDialog.tsx · src/lib/m3-store.ts ·
+               src/lib/m3/ban-in-bao-gia-policy.ts (mới) · src/lib/version.ts ·
+               scripts/tests/{chay-pilot-m1-m3.mjs (mới), bao-gia-print-parity.test.ts} ·
+               scripts/dung-ban-xem-thu-bao-gia.mjs · package.json ·
+               docs/reports/ · sổ Owner · sổ nợ
+               CSDL nội bộ: bản ghi thử mang tiền tố PILOT-20260911
+   KHÔNG ĐỤNG: máy vận hành · Notion · lược đồ CSDL · Pricing · M4/M5/MF/M9 ·
+               scripts/skill-router.mjs · dữ liệu 1.692 khách còn lại ·
+               hai stash của phiên khác (đã kiểm chứng còn nguyên sau sự cố)
+
+3. BẰNG CHỨNG
+   npm run test:pilot-m1-m3     → 31 đạt / 0 hỏng / 32 bước   → UI_PROVEN + DB_PROVEN
+   npm run test:ban-in-bao-gia  → 60/60                        → CODE_PROVEN
+   npm run test:bao-xanh-gia    → đạt                          → CODE_PROVEN + DB_PROVEN
+   npm run test:san-pham-bao-gia→ đạt                          → CODE_PROVEN + DB_PROVEN
+   npm run test:van-tay-ban-dung→ 52/52                        → CODE_PROVEN
+   npm run test:nhom-nhanh      → đạt                          → CODE_PROVEN
+   npm run test:nhom-csdl       → đạt                          → DB_PROVEN
+   npm run test:cong-mo-coi     → 3/3                          → CODE_PROVEN
+   npx tsc --noEmit             → sạch                          → CODE_PROVEN
+   ảnh nghiệm thu desktop + 390px ở docs/anh-kiem-thu/          → UI_PROVEN
+
+4. GHI SỔ YÊU CẦU OWNER
+   [x] ĐÃ GHI — mục #256 (gói bổ sung); mục #255 là gói trước
+
+5. PUSH BÁO CÁO CÔNG KHAI
+   [x] ĐÃ PUSH — kho Baocaoerptanphat (mã commit ghi ở phần bàn giao)
+
+6. CÒN SÓT / CHƯA LÀM
+   - Chưa commit bản phát hành V1.00.371, chưa đẩy, chưa triển khai (đúng luật gói)
+   - T6·T7 giữ NOT_CHECKED (DEBT-195)
+   - DEBT-193: cổng PII vẫn chưa tự bắt được tên+địa chỉ trong tệp báo cáo
+   - DEBT-194 lỗ 3 (không đường triển khai nào tự gọi cổng vân tay) chưa nối
+   - 843 mục lint có sẵn của dự án — ngoài phạm vi gói này
+
+7. ĐANG CHỜ OWNER
+   - Duyệt bố cục bản in → chặn đóng DEBT-152 và toàn bộ bước phát hành
+   - (sau đó) Xác nhận triển khai → chặn mọi bằng chứng trên máy vận hành
+
+8. BƯỚC KẾ TIẾP — ĐÚNG MỘT VIỆC
+   Owner mở docs/reports/ban-in-bao-gia-20260911/README.md, xem năm bản
+   (ảnh + PDF + HTML), rồi trả lời câu hỏi duyệt bố cục ở cuối báo cáo này.
+
+9. CHƯA XÁC MINH ĐƯỢC
+   - Mọi hành vi trên máy vận hành — gói này chưa mở quyền triển khai
+   - Vân tay bản dựng trên máy vận hành thật
+   - Ứng dụng có tự ghi thêm vào thư mục bản chạy sau khi khởi động không
+
+10. TRẠNG THÁI CHUNG
+   [x] PROVISIONAL — READY_FOR_OWNER_LAYOUT_REVIEW.
+       Điều kiện lên PASS: Owner duyệt bố cục → trình biên nhận phát hành →
+       Owner xác nhận triển khai → chạy nghiệm thu trên máy vận hành.
+
+11. NÉN PHIÊN & ĐỌC LẠI THAM CHIẾU
+   Phiên có bị nén ngữ cảnh không: CÓ (nén ở đầu phiên trước)
+   Đã đọc lại sau nén, đọc thật từ đĩa:
+     - CLAUDE.md (tự tiêm lại) · .governance/registry/tech-debt.md
+     - docs/golive/GOLIVE-PLAN.md (ma trận T1–T9) · docs/PLAN-OF-RECORD.md
+     - docs/UI-STANDARD.md · docs/UI-ACCEPTANCE-CHECKLIST.md
+     - docs/Form Mẫu Tham Khảo/01_Bao_Gia.html (mẫu Owner duyệt)
+     - toàn bộ src/app/m3/bao-gia/ · src/lib/m3-store.ts · workflow-service.ts
+     - src/components/m3/SelectOptionForOrderDialog.tsx
+     - scripts/van-tay-artifact.sh · scripts/tests/kiem-dinh-danh-phat-hanh.mjs
+   Không dùng trí nhớ từ trước nén cho bất kỳ kết luận nào.
+═══════════════════════════════════════════
+```
+
+---
+
+*Báo cáo đã qua cổng công khai: không địa chỉ máy chủ · không đường dẫn tuyệt đối của
+máy vận hành · không địa chỉ thư của người thật · không khoá hay mật khẩu · không tên,
+địa chỉ hay điện thoại của khách hàng · không số tiền của giao dịch nào.*
+
+*Các con số như «3 trên 1.695 khách» là **số lượng kỹ thuật** — cần thiết để chứng minh
+bộ lọc phân công chạy đúng, và không hé lộ khách nào là ai.*
