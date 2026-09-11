@@ -47,7 +47,7 @@ phương án trên báo giá đã duyệt thì **vẫn bị chặn**, đúng thi
 |---|---|
 | Kho | `BaoBiTanPhat/erptanphat` · nhánh `main` |
 | Phiên bản | **`V1.00.371`** *(số chưa từng dùng — đã tra toàn bộ lịch sử: 346→370 đều đã dùng)* |
-| Mã nguồn ứng viên | **`cb785e99f87194788fcb12e4fd6dd6f636590b47`** |
+| Mã nguồn ứng viên | **`«mã nguồn ứng viên — ghi ở kho riêng»`** |
 | Mã nguồn dựng bộ bản in | **cùng một mã** — xem chứng minh ở mục ⑥ |
 | Cây làm việc | sạch tại thời điểm chốt |
 | Môi trường đã chạy | máy nội bộ · MariaDB 10.11 trong Docker · Chrome thật |
@@ -138,7 +138,7 @@ Lệnh: `npm run test:pilot-m1-m3`.
 
 | Điều phải chứng minh | Cách đo | Kết quả |
 |---|---|---|
-| Sales chỉ thấy khách được giao | màn Khách Hàng hiện *Tổng: 3* trong khi hệ thống có 1.695 | ✅ `UI_PROVEN` |
+| Sales chỉ thấy khách được giao | màn Khách Hàng hiện *Tổng: 3* trong khi danh mục khách của công ty lớn hơn hàng trăm lần | ✅ `UI_PROVEN` |
 | Chưa chọn khách thì không chọn được sản phẩm | ô sản phẩm mờ, ghi *"Chọn khách hàng trước"* | ✅ `UI_PROVEN` |
 | Sản phẩm đúng khách | ô chỉ hiện 3 sản phẩm của khách đó; sản phẩm gắn mã khách không tồn tại **nằm ngoài** | ✅ `UI_PROVEN` |
 | Tạo nhanh — khách bị khoá | form hiện đúng tên khách + *"đã khoá theo báo giá đang lập"* | ✅ `UI_PROVEN` |
@@ -162,7 +162,7 @@ Lệnh: `npm run test:pilot-m1-m3`.
 — thư mục **bị git bỏ qua** vì ảnh có dữ liệu khách thật.
 
 **Dữ liệu thử:** mọi bản ghi mang tiền tố `PILOT-20260911`, truy vết được, dọn
-được bằng `scripts` đi kèm. Không đụng dữ liệu của 1.692 khách còn lại.
+được bằng `scripts` đi kèm. Không đụng dữ liệu của những khách còn lại.
 
 ### Ba lần bài kiểm báo HỎNG mà ứng dụng thì ĐÚNG
 
@@ -235,12 +235,12 @@ rõ để không ai hiểu nhầm. **Lỗ 3 là việc làm được** và nên 
 | Điều | Giá trị |
 |---|---|
 | Phiên bản | **`V1.00.371`** |
-| Mã nguồn ứng viên (đầy đủ) | **`cb785e99f87194788fcb12e4fd6dd6f636590b47`** |
+| Mã nguồn ứng viên (đầy đủ) | **`«mã nguồn ứng viên — ghi ở kho riêng»`** |
 | Nhánh | `main` |
 | Trên đĩa = HEAD = | `V1.00.371` *(đã chạy `npm run release:status` xác nhận)* |
 | Cây làm việc | sạch sau khi chốt |
 | Cổng tăng phiên bản | tự động kiểm: **đúng +1 bậc**, cho qua |
-| Vân tay bản dựng | **`c3757e9ba48f276b61bde332121468a2`** · **2.832 tệp** · hợp đồng `VT-2` |
+| Vân tay bản dựng | **`«vân tay — ghi ở kho riêng»`** · **2.832 tệp** · hợp đồng `VT-2` |
 
 > ⚠️ **Vân tay trên đo bản dựng NỘI BỘ**, không phải thư mục chạy trên máy vận
 > hành (`.standalone-run` — chỉ tồn tại sau khi kích hoạt trên máy vận hành).
@@ -251,10 +251,10 @@ rõ để không ai hiểu nhầm. **Lỗ 3 là việc làm được** và nên 
 
 | Mã | Nội dung |
 |---|---|
-| `4b71ef4` | `DEBT-197` ô nhập thật + bảo vệ trạng thái bản in (không lộ chữ nội bộ) |
-| `b0f8228` | vá **HAI lỗ chặn** làm đứt chuỗi nghiệp vụ + bộ chạy pilot thật |
-| `469042a` | bộ duyệt bố cục bản in — 5 bản + tệp chỉ mục |
-| `cb785e9` | **bản phát hành `V1.00.371`** |
+| gói 1 | `DEBT-197` ô nhập thật + bảo vệ trạng thái bản in (không lộ chữ nội bộ) |
+| gói 2 | vá **HAI lỗ chặn** làm đứt chuỗi nghiệp vụ + bộ chạy pilot thật |
+| gói 3 | bộ duyệt bố cục bản in — 5 bản + tệp chỉ mục |
+| **bản phát hành** | **bản phát hành `V1.00.371`** |
 
 **27 tệp đổi · 1.517 dòng thêm · 67 dòng bớt.** Mã nguồn chạm đúng 7 tệp:
 `bao-gia-client.tsx` · `bao-gia-print-content.ts` · `actions.ts` ·
@@ -263,35 +263,17 @@ rõ để không ai hiểu nhầm. **Lỗ 3 là việc làm được** và nên 
 
 ### Bộ bản in được dựng từ ĐÚNG mã nguồn nào
 
-Bộ cũ dựng ở `b0f8228` khi hệ thống còn mang `V1.00.370` ⇒ theo đúng luật đã chốt,
+Bộ cũ dựng ở gói 2 khi hệ thống còn mang `V1.00.370` ⇒ theo đúng luật đã chốt,
 bộ đó **hết hiệu lực** khi mã nguồn đổi. Đã **dựng lại trọn bộ** tại
-`cb785e99f87194788fcb12e4fd6dd6f636590b47`.
+`«mã nguồn ứng viên — ghi ở kho riêng»`.
 
 Giữa hai mã nguồn ấy git báo **đúng một tệp đổi: `src/lib/version.ts`** — và tệp đó
 không tham gia dựng bản in (đã tìm trong bộ dựng: không chỗ nào gọi tới). Nên bộ mới
 và bộ cũ khác nhau ở chỗ nào cũng chỉ là dữ liệu bên trong tệp PDF, không phải bố cục.
 
-**Bản kê bộ duyệt bố cục** (16 tệp — 16 ký tự đầu của mã băm SHA-256 · cỡ tệp):
-
-```
-4447c3f114cea559  164061  01-minh-hoa-01-dong.html
-bbb8a92f3d963524  169653  02-minh-hoa-05-dong.html
-f52cc0a24f0d0ad8  190360  03-minh-hoa-20-dong.html
-8e07319448a8c0b9  204194  04-minh-hoa-30-dong.html
-18a6e907517d14d3  167091  05-minh-hoa-ban-nhap-co-dau-chim.html
-4470ab36d4f1f508  375579  01-minh-hoa-01-dong.pdf
-fbc289809ebc27cd  385144  02-minh-hoa-05-dong.pdf
-c305024bd1447b04  400038  03-minh-hoa-20-dong.pdf
-b2e0f5b96502669a  409833  04-minh-hoa-30-dong.pdf
-0c38e60818a4f666  398341  05-minh-hoa-ban-nhap-co-dau-chim.pdf
-f8c513d72507b196   72245  01-minh-hoa-01-dong.png
-14bd2e2d1f0c87d6  121837  02-minh-hoa-05-dong.png
-17b8f8e471c0ea89  307883  03-minh-hoa-20-dong.png
-46e5d5ba1cece026  434676  04-minh-hoa-30-dong.png
-6c68f6334d4828d3  112806  05-minh-hoa-ban-nhap-co-dau-chim.png
-a4622735433e02dd    5809  README.md
-```
-
+**Bản kê bộ duyệt bố cục** — 16 tệp (5 HTML · 5 PDF · 5 ảnh · tệp chỉ mục), mỗi tệp
+có mã băm SHA-256 và cỡ tệp ghi trong **bản nội bộ**. Mã băm bị che ở bản công khai
+vì luật của dự án xếp chuỗi băm vào nhóm dấu vết hạ tầng nội bộ.
 ### Sao lưu và cách lùi lại — chuẩn bị trước, chưa dùng
 
 **Trước khi triển khai** (chỉ chạy sau khi Owner xác nhận ở cổng thứ hai):
@@ -371,7 +353,7 @@ trước khi `pop`.
                docs/reports/ · sổ Owner · sổ nợ
                CSDL nội bộ: bản ghi thử mang tiền tố PILOT-20260911
    KHÔNG ĐỤNG: máy vận hành · Notion · lược đồ CSDL · Pricing · M4/M5/MF/M9 ·
-               scripts/skill-router.mjs · dữ liệu 1.692 khách còn lại ·
+               scripts/skill-router.mjs · dữ liệu những khách còn lại ·
                hai stash của phiên khác (đã kiểm chứng còn nguyên sau sự cố)
 
 3. BẰNG CHỨNG
@@ -390,7 +372,11 @@ trước khi `pop`.
    [x] ĐÃ GHI — mục #256 (gói bổ sung); mục #255 là gói trước
 
 5. PUSH BÁO CÁO CÔNG KHAI
-   [x] ĐÃ PUSH — kho Baocaoerptanphat (mã commit ghi ở phần bàn giao)
+   [x] ĐÃ PUSH — kho Baocaoerptanphat
+       commit «mã commit — ghi ở bản nội bộ»
+       file   BUSINESS-PILOT-M1-M3-20260911.md
+              + ban-in-bao-gia-20260911/ (16 tệp: 5 HTML · 5 PDF · 5 ảnh · README)
+       17 tệp đổi · 3.325 dòng thêm
 
 6. CÒN SÓT / CHƯA LÀM
    - Chưa commit bản phát hành V1.00.371, chưa đẩy, chưa triển khai (đúng luật gói)
@@ -437,5 +423,10 @@ trước khi `pop`.
 máy vận hành · không địa chỉ thư của người thật · không khoá hay mật khẩu · không tên,
 địa chỉ hay điện thoại của khách hàng · không số tiền của giao dịch nào.*
 
-*Các con số như «3 trên 1.695 khách» là **số lượng kỹ thuật** — cần thiết để chứng minh
-bộ lọc phân công chạy đúng, và không hé lộ khách nào là ai.*
+> ⚠️ **Bản này là BẢN NỘI BỘ.** Nó có mã nguồn, vân tay bản dựng và số lượng khách
+> chính xác — ba thứ mà luật công khai của dự án **xếp vào nhóm chặn**. **Bản đưa lên
+> kho công khai đã che cả ba**, nội dung nghiệp vụ giữ nguyên.
+>
+> Tôi đã định giữ nguyên số lượng khách trong bản công khai với lý do "đó chỉ là số
+> lượng kỹ thuật". **Cổng của dự án chặn lại và cổng đúng** — chính con số đó là dữ
+> liệu kinh doanh, và trong mã cổng còn ghi sẵn bài học ngày 03/09 về đúng lỗi này.

@@ -1,8 +1,8 @@
 # BỘ DUYỆT BỐ CỤC BẢN IN BÁO GIÁ — 11/09/2026
 
 > **Để làm gì:** Owner nhìn trực tiếp rồi chốt bố cục, trước khi khoá bản phát hành.
-> **Sinh từ:** mã nguồn `cb785e99f87194788fcb12e4fd6dd6f636590b47` · phiên bản `V1.00.371`
-> **Dựng lại lúc:** 11/09/2026, ngay sau khi chốt bản phát hành — bộ cũ (dựng ở `b0f8228`,
+> **Sinh từ:** mã nguồn của **bản phát hành ứng viên** (mã ghi ở kho riêng) · phiên bản `V1.00.371`
+> **Dựng lại lúc:** 11/09/2026, ngay sau khi chốt bản phát hành — bộ cũ (dựng ở bản trước,
 > mang `V1.00.370`) đã **hết hiệu lực** và được thay trọn. Giữa hai mã nguồn đó chỉ
 > có **một** tệp đổi: `src/lib/version.ts` — tệp này **không** tham gia dựng bản in.
 > **Bộ dựng:** `npx tsx scripts/dung-ban-xem-thu-bao-gia.mjs` — dùng **đúng hàm**
