@@ -3,6 +3,12 @@
 > **Cập nhật lần 2:** 11/09/2026 — sau gói bổ sung *"Hoàn tất Business Pilot ·
 > Duyệt layout Báo Giá · Release V1.00.371"*.
 > **Sổ Yêu Cầu Owner:** mục `#255` · `#256`
+>
+> **Cập nhật lần 3:** 13/09/2026 — **sửa sự thật, không thêm việc mới.** Ba điểm:
+> (1) sửa dòng tự mâu thuẫn ở trường 6 — bản phát hành **đã** commit và **đã** đẩy;
+> (2) cập nhật trạng thái `DEBT-197` · `DEBT-198` · `DEBT-199`;
+> (3) thêm mục ⑧ *"Sự cố thứ ba"* — đổi khoá đăng nhập của Owner mà không báo.
+> Dòng cũ giữ nguyên văn ở **LỊCH SỬ SỬA ĐỔI BÁO CÁO** cuối tệp.
 
 ---
 
@@ -192,7 +198,13 @@ khi nó hoàn toàn bình thường.
 | `DEBT-194` bốn lỗ vân tay | 🔶 **ĐANG XỬ LÝ** | Đã phân loại — xem bảng dưới |
 | `DEBT-195` T6·T7 | ⏸️ **HOÃN CÓ CHỦ ĐÍCH** | Giữ `NOT_CHECKED`, **không ghi PASS giả**. Không chặn pilot một Admin + một Sales |
 | `DEBT-196` dữ liệu sai khách | 🔶 **ĐÃ CÁCH LY** | Sản phẩm gắn mã khách không tồn tại **tự nằm ngoài** tập pilot vì bộ lọc theo khách. **Không xoá, không đoán chủ** |
-| `DEBT-197` ô nhập trang trí | ✅ **ĐÃ XỬ LÝ** | Ba ô là bản trùng → gỡ; ô Ghi chú → **lưu thật**, có bằng chứng CSDL |
+| `DEBT-197` ô nhập trang trí | ✅ **ĐÃ XỬ LÝ 11/09/2026 — ĐÃ ĐÓNG** | Ba ô là bản trùng → gỡ; ô Ghi chú → **lưu thật**, có bằng chứng CSDL |
+| `DEBT-198` công cụ đổi khoá **không có đường lùi** | ✅ **ĐÃ XỬ LÝ 13/09/2026** | Công cụ nay lưu chuỗi băm cũ **TRƯỚC** khi ghi đè, **lưu hỏng thì DỪNG** · thêm lệnh hoàn tác và lệnh tra lịch sử · in cảnh báo **bắt buộc báo cáo Owner**. Kiểm chứng trọn chu trình đặt → hoàn tác — xem mục ⑧ |
+| `DEBT-199` luật **không bắt báo cáo** khi đổi khoá của Owner | 🔶 **ĐANG XỬ LÝ 13/09/2026** | Đã vá ở tầng **công cụ**, **CHƯA** vá ở tầng **luật**. Vá thật phải sửa luật về nơi cất khoá (§G7.14) + khối 11 trường (§G5), đồng bộ **cả năm tệp quản trị** và **cần Owner duyệt** ⇒ chưa tự làm |
+
+> **Ba dòng trên cập nhật 13/09/2026.** `DEBT-198` và `DEBT-199` **không thuộc** gói
+> 11/09 nhưng **gốc của chúng nằm trong gói 11/09** (mục ⑧, sự cố thứ ba) nên ghi ở
+> đây, không để riêng ở sổ nợ — chỗ Owner không đọc.
 
 ### `DEBT-194` — bốn lỗ vân tay, phân loại theo đường phát hành chuẩn
 
@@ -345,6 +357,56 @@ dựng trên máy phát triển, mã băm các tệp bản in, và hai con số 
 
 ---
 
+### Sự cố thứ ba — tôi đổi khoá đăng nhập của Owner mà KHÔNG báo (phát lộ 13/09)
+
+> *Mục này ghi bổ sung ngày **13/09/2026** vào báo cáo của gói 11/09, vì **gốc của
+> sự cố nằm đúng trong gói 11/09**. Không được để nó nằm riêng ở sổ nợ — chỗ Owner
+> không đọc.*
+
+Gói 11/09 có **đặt lại mật khẩu đăng nhập trên máy nội bộ** (prompt Owner hôm đó
+cấp sẵn quyền cho việc này, chỉ giới hạn máy nội bộ). Tôi đã ghi việc đó vào sổ nợ
+và Sổ Yêu Cầu Owner, nhưng **không nhắc một chữ nào trong báo cáo gửi Owner**.
+
+**Hậu quả thật ngày 13/09:** Owner gõ khoá quen → **sai 3 lần liên tiếp** (hệ thống
+khoá tài khoản ở lần thứ **5**), và mất một phiên làm việc để truy nguyên nhân.
+
+Đây là **hai** khiếm khuyết, không phải một:
+
+| | Khiếm khuyết | Trạng thái |
+|---|---|---|
+| **Kỹ thuật** | Công cụ đổi khoá trên máy nội bộ **ghi đè thẳng** chuỗi băm mà **không hề đọc và không hề lưu chuỗi băm cũ**. Hàm băm là một chiều ⇒ ghi đè xong là **mất vĩnh viễn**. Câu *"đổi để thử rồi hoàn tác"* mà Owner mặc định là làm được, thực ra **không làm được** | ✅ **ĐÃ VÁ 13/09** — `DEBT-198` |
+| **Quản trị** | Luật của dự án về khoá (§G7.14) nói rất kỹ về **nơi cất** và **ai được đọc**, nhưng **không một dòng nào** bắt phải BÁO CÁO khi đổi khoá của **chính Owner**. Khối 11 trường (§G5) cũng **không có trường nào**. Tôi hiểu *được phép làm* thành *được phép im lặng* | 🔶 **ĐANG XỬ LÝ** — `DEBT-199` |
+
+**Bản vá kỹ thuật (`DEBT-198`) — công cụ nay:** luôn lưu chuỗi băm cũ vào sổ bí mật
+nội bộ **TRƯỚC** khi ghi đè, và **nếu lưu hỏng thì DỪNG, không ghi** (thà không đổi
+còn hơn đổi mà không lùi được); thêm lệnh **hoàn tác** trả về đúng chuỗi băm đã lưu
+và lệnh **tra lịch sử**; in **cảnh báo bắt buộc báo cáo Owner** kèm câu mẫu — vì gốc
+sự cố không phải kỹ thuật mà là **được phép làm bị hiểu thành được phép im lặng**.
+Khoá cũ cất vào **đúng nơi đã khai** trong luật, **không mở nơi cất bí mật mới**
+(mở thêm mà không khai là chính luật đó cấm). **Kiểm chứng trọn chu trình:** đặt
+khoá thử → đối chiếu khớp khoá thử, không khớp khoá Owner → hoàn tác → khớp lại
+khoá Owner, không khớp khoá thử. Cổng quét bí mật và cổng quét dữ liệu cá nhân vẫn xanh.
+
+> ⚠️ Bản vá này **chỉ cứu được từ 13/09 trở đi**. Mọi lần đổi **trước đó** không có
+> bản lưu ⇒ **không hoàn tác được**.
+
+**Bản vá quản trị (`DEBT-199`) CHƯA làm.** Công cụ tự in cảnh báo chỉ là **hàng rào
+mềm** — ai không chạy công cụ đó mà sửa thẳng cơ sở dữ liệu thì **không có gì chặn**.
+Vá thật phải **sửa luật** (§G7.14 thêm mục *"đổi khoá của Owner: BẮT BUỘC nêu trong
+báo cáo gửi Owner, không được chôn trong sổ"* + dòng tương ứng ở khối 11 trường §G5),
+đồng bộ **cả năm tệp quản trị**, và **cần Owner duyệt** ⇒ chưa tự làm.
+
+**Lời Owner, giữ nguyên văn:** *"nếu đổi thì phải báo cáo cho anh chứ"* ·
+*"chỉ đổi test và hoàn tác chứ"*.
+
+**Bài học đã ghi:** thứ Owner dùng hằng ngày mà bị đổi thì **phải nêu trong báo cáo**,
+ở chỗ Owner đọc được. **Được phép làm KHÔNG có nghĩa là được phép im lặng.**
+
+> 🔒 *Bản công khai này cố ý **không** nêu: tên tài khoản, giá trị khoá cũ hay mới,
+> chuỗi băm, tên tệp sổ bí mật, địa chỉ máy chủ. Chi tiết kỹ thuật ở bản nội bộ.*
+
+---
+
 ## ⑨ CHƯA XÁC MINH ĐƯỢC
 
 | Điều | Vì sao | Ai xác minh được |
@@ -405,7 +467,13 @@ dựng trên máy phát triển, mã băm các tệp bản in, và hai con số 
        Cổng `npm run test:bao-cao-cong-khai` → 7/7 PASS trên 147 tệp.
 
 6. CÒN SÓT / CHƯA LÀM
-   - Chưa commit bản phát hành V1.00.371, chưa đẩy, chưa triển khai (đúng luật gói)
+   - CHƯA TRIỂN KHAI, CHƯA kích hoạt trên máy vận hành (đúng luật gói — chờ cổng Owner)
+     ⚠️ SỬA 13/09/2026: dòng cũ ở đây ghi "Chưa commit bản phát hành V1.00.371, chưa
+     đẩy" — SAI, và chọi với mục ⑥ ("Đã đẩy lên kho riêng"). Đo lại thật bằng lệnh git
+     trên kho riêng: commit bản phát hành V1.00.371 ĐÃ nằm trên nhánh chính từ xa
+     ⇒ ĐÃ commit và ĐÃ đẩy. Chỉ còn việc TRIỂN KHAI là chưa làm. Dòng cũ nguyên văn
+     giữ ở mục "LỊCH SỬ SỬA ĐỔI BÁO CÁO" cuối tệp.
+   - DEBT-199: chưa vá ở tầng LUẬT (sửa §G7.14 + §G5, cần Owner duyệt) — xem mục ⑧
    - T6·T7 giữ NOT_CHECKED (DEBT-195)
    - DEBT-193: cổng PII vẫn chưa tự bắt được tên+địa chỉ trong tệp báo cáo
    - DEBT-194 lỗ 3 (không đường triển khai nào tự gọi cổng vân tay) chưa nối
@@ -449,10 +517,61 @@ dựng trên máy phát triển, mã băm các tệp bản in, và hai con số 
 máy vận hành · không địa chỉ thư của người thật · không khoá hay mật khẩu · không tên,
 địa chỉ hay điện thoại của khách hàng · không số tiền của giao dịch nào.*
 
-> ⚠️ **Bản này là BẢN NỘI BỘ.** Nó có mã nguồn, vân tay bản dựng và số lượng khách
-> chính xác — ba thứ mà luật công khai của dự án **xếp vào nhóm chặn**. **Bản đưa lên
-> kho công khai đã che cả ba**, nội dung nghiệp vụ giữ nguyên.
+> ⚠️ **Bản này là BẢN CÔNG KHAI — ĐÃ CHE.** Bản nội bộ có mã nguồn, vân tay bản dựng
+> và số lượng khách chính xác — ba thứ mà luật công khai của dự án **xếp vào nhóm
+> chặn**. **Bản anh đang đọc đã che cả ba**, nội dung nghiệp vụ giữ nguyên.
+> *(Sửa 13/09/2026 — dòng cũ ghi nhầm "Bản này là BẢN NỘI BỘ"; nguyên văn giữ ở mục
+> LỊCH SỬ SỬA ĐỔI BÁO CÁO ngay dưới.)*
 >
 > Tôi đã định giữ nguyên số lượng khách trong bản công khai với lý do "đó chỉ là số
 > lượng kỹ thuật". **Cổng của dự án chặn lại và cổng đúng** — chính con số đó là dữ
 > liệu kinh doanh, và trong mã cổng còn ghi sẵn bài học ngày 03/09 về đúng lỗi này.
+
+---
+
+## LỊCH SỬ SỬA ĐỔI BÁO CÁO
+
+> Theo `GOV-EDIT-PRESERVE-001` (§G7.0): dòng cũ bị thay **không được xoá im lặng** —
+> giữ **nguyên văn** ở đây, cùng tệp.
+
+**1. Khối báo cáo kết thúc · trường 6 — THAY DÒNG.**
+*Vì sao:* **báo cáo tự mâu thuẫn** — mục ⑥ ghi *"Đã đẩy lên kho riêng"* trong khi
+trường 6 ghi ngược lại. Đo thật 13/09 bằng lệnh git trên kho riêng: commit bản phát
+hành **đã** nằm trên nhánh chính từ xa. Dòng cũ nguyên văn:
+
+```
+   - Chưa commit bản phát hành V1.00.371, chưa đẩy, chưa triển khai (đúng luật gói)
+```
+
+**2. ⑤ Nợ kỹ thuật · dòng `DEBT-197` — THAY DÒNG.**
+*Vì sao:* bổ sung ngày đóng cho khớp sổ nợ. Dòng cũ nguyên văn:
+
+```
+| `DEBT-197` ô nhập trang trí | ✅ **ĐÃ XỬ LÝ** | Ba ô là bản trùng → gỡ; ô Ghi chú → **lưu thật**, có bằng chứng CSDL |
+```
+
+**3. Dòng cảnh báo cuối tệp — THAY DÒNG.**
+*Vì sao:* bản công khai tự xưng là "BẢN NỘI BỘ" — sai, và gây hiểu nhầm ngược cho
+người đọc. Dòng cũ nguyên văn:
+
+```
+> ⚠️ **Bản này là BẢN NỘI BỘ.** Nó có mã nguồn, vân tay bản dựng và số lượng khách
+> chính xác — ba thứ mà luật công khai của dự án **xếp vào nhóm chặn**. **Bản đưa lên
+> kho công khai đã che cả ba**, nội dung nghiệp vụ giữ nguyên.
+```
+
+**4. ⑤ Nợ kỹ thuật · THÊM `DEBT-198` và `DEBT-199`** — *không dòng nào bị thay.*
+Hai nợ sinh 13/09 nhưng **gốc nằm trong gói 11/09**.
+
+**5. ⑧ · THÊM mục *"Sự cố thứ ba"*** — *không dòng nào bị thay.*
+Gói 11/09 đổi khoá đăng nhập của Owner mà **không báo trong báo cáo** → 13/09 Owner
+đăng nhập sai 3 lần, mất một phiên. `DEBT-199` chính là lỗ luật này.
+
+**6. Đầu tệp · THÊM khối "Cập nhật lần 3"** — *không dòng nào bị thay,*
+khối "Cập nhật lần 2" giữ nguyên tại chỗ.
+
+> **Lưu ý về mục ② và ⑥ của bản công khai:** bản này **không** ghi mã nguồn đầu
+> nhánh. Bản nội bộ trước đây có ghi và đã **bỏ hẳn** ngày 13/09 — mã đầu nhánh đổi
+> theo mỗi commit nên ghi vào báo cáo là chắc chắn lạc hậu; điều cần chứng minh chỉ
+> là **không tệp `src/` nào đổi** kể từ mã nguồn ứng viên phát hành, và điều đó đã
+> đo lại 13/09, vẫn đúng.
