@@ -123,7 +123,7 @@ pm2 resurrect  →  pm2 save  →  pm2 startup systemd
    [x] ĐÃ GHI — mục #258 · #259 · #260 · #261
 
 5. PUSH BÁO CÁO CÔNG KHAI
-   [x] ĐÃ PUSH — kho riêng, nhánh chính · commit **5f46ab4** · tệp `docs/reports/KHOI-PHUC-MAY-VAN-HANH-VA-LICH-SU-20261123.md`, đẩy cùng sổ Owner và sổ nợ. Dòng này điền ở lượt chốt ngay sau commit đó — không ghi ĐÃ PUSH khi chưa có mã thật (§G5).
+   [x] ĐÃ PUSH — kho báo cáo công khai **Baocaoerptanphat** · commit **566a9d3** · tệp `KHOI-PHUC-MAY-VAN-HANH-VA-LICH-SU-20261123.md` (kèm cập nhật trang bìa). Kho riêng: commit **5f46ab4** (sổ Owner + sổ nợ + bản báo cáo). Dòng này điền SAU khi đẩy xong — không ghi ĐÃ PUSH khi chưa có mã thật (§G5).
 
 6. CÒN SÓT / CHƯA LÀM
    - DEBT-200 (a): chưa khôi phục được các tệp lịch sử đã bị xoá — hai lệnh kiểm bản sao
